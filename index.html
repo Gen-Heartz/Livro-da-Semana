@@ -20,37 +20,60 @@
         <div class="books-container">
             <div class="book">
                 <img src="https://img.bertrand.pt/images/amantes-de-buenos-aires-alberto-s-santos/NDV8MjI4NTY0NzZ8MjY0NjE0NzN8MTc3ODIyNjExMTAwMHx3ZWJw/180x"
-                    alt="Amantes de Buenos Aires">
+                    alt="Amantes de Buenos Aires" onclick="abrirModal(this)">
                 <h5>Amantes de Buenos Aires</h5>
+                <div class="sinopse" style="display: none;">
+                    <h3>Amantes de Buenos Aires</h3>
+                    <p>Sinopse do livro 1</p>
+                </div>
             </div>
 
             <div class="book">
                 <img src="https://img.bertrand.pt/images/amantes-de-buenos-aires-alberto-s-santos/NDV8MjI4NTY0NzZ8MjY0NjE0NzN8MTc3ODIyNjExMTAwMHx3ZWJw/180x"
-                    alt="Amantes de Buenos Aires">
+                    alt="Amantes de Buenos Aires" onclick="abrirModal(this)">
                 <h5>Amantes de Buenos Aires</h5>
+                <div class="sinopse" style="display: none;">
+                    <h3>Amantes de Buenos Aires</h3>
+                    <p>Sinopse do livro 2</p>
+                </div>
             </div>
         </div>
 
         <div class="books-container">
             <div class="book">
                 <img src="https://img.bertrand.pt/images/amantes-de-buenos-aires-alberto-s-santos/NDV8MjI4NTY0NzZ8MjY0NjE0NzN8MTc3ODIyNjExMTAwMHx3ZWJw/180x"
-                    alt="Amantes de Buenos Aires">
+                    alt="Amantes de Buenos Aires" onclick="abrirModal(this)">
                 <h5>Amantes de Buenos Aires</h5>
+                <div class="sinopse" style="display: none;">
+                    <h3>Amantes de Buenos Aires</h3>
+                    <p>Sinopse do livro 3</p>
+                </div>
             </div>
 
             <div class="book">
                 <img src="https://img.bertrand.pt/images/amantes-de-buenos-aires-alberto-s-santos/NDV8MjI4NTY0NzZ8MjY0NjE0NzN8MTc3ODIyNjExMTAwMHx3ZWJw/180x"
-                    alt="Amantes de Buenos Aires">
+                    alt="Amantes de Buenos Aires" onclick="abrirModal(this)">
                 <h5>Amantes de Buenos Aires</h5>
+                <div class="sinopse" style="display: none;">
+                    <h3>Amantes de Buenos Aires</h3>
+                    <p>Sinopse do livro 4</p>
+                </div>
             </div>
         </div>
-
     </main>
+    <!-- Modal para exibir texto -->
+    <div id="meuModal" class="modal">
+        <div class="modal-corpo">
+            <span class="fechar" onclick="fecharModal()">&times;</span>
+            <div id="textoDoModal"></div>
+        </div>
+    </div>
+
     <footer>
         <p>&copy; Todos os direitos reservados.
             &copy; MIT.
             &copy; Heartz Company. </p>
     </footer>
+    <script src="js/function.js"></script>
 </body>
-
 </html>
