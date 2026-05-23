@@ -115,15 +115,17 @@ main {
 /* Janela */
 .modal-corpo {
     background-image: linear-gradient(#faebd7, black 190%);
-    ;
-    padding: 30px;
+    padding: 20px;
     border-radius: 8px;
-    max-width: 370px;
-    width: 90%;
+    max-width: 700px;
+    width: 80%;
     position: relative;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     font-family: sans-serif;
     line-height: 1.6;
+    max-height: 70vh;
+    margin: 0 auto;
+    overflow-y: auto;
 }
 
 .fechar {
