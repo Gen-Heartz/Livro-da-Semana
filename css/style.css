@@ -1,13 +1,15 @@
 body {
     background-image: linear-gradient(#faebd7, black 120%);
     background-attachment: fixed;
-    width: 400px;
+    border-color: #ff0000;
     margin: 0 auto;
+    max-width: 800px;
+    padding: 0px 20px;
 }
 
 header {
     text-align: center;
-    padding: 1px;
+    padding: 3px 0px;;
 }
 
 #menu {
@@ -26,21 +28,24 @@ main {
 }
 
 .books-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+
+    /* Cria colunas responsivas */
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+
+    gap: 15px;
 }
 
 .book {
-    border: #faebd7 solid 0px;
-    border-image: 5px;
-    margin: 0px 0px;
     text-align: center;
 }
 
 .book img {
-  border-radius: 5px;
-  margin: 0px 0px -23px 0px;
+    width: 100%;     /* ocupa toda largura do card */
+    height: auto;    /* mantém proporção */
+    border-radius: 8px;
+
+    display: block;
 }
 
 /* Estilos para o modal (fundo da janela?) */
