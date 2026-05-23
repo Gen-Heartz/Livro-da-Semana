@@ -1,16 +1,13 @@
 body {
     background-image: linear-gradient(#faebd7, black 120%);
     background-attachment: fixed;
-    border-color: #ff0000;
     margin: 0 auto;
-    max-width: 800px;
+    max-width: 1200px;
     padding: 0px 20px;
 }
 
 header {
-    text-align: center;
-    padding: 3px 0px;;
-}
+    text-align: center;}
 
 #menu {
     margin: 0px 0px;
@@ -18,6 +15,57 @@ header {
     background-color: #faebd7;
     border-radius: 10px;
 }
+
+/* menu de navegação */
+nav {
+    background-color: #c7baaa;
+    border-radius: 7px 7px 0px 0px;
+    position: relative;
+    display: inline-block;
+    color: rgb(0, 0, 0);
+    padding: 5px;
+    cursor: pointer;
+    margin-right: 12px;
+}
+
+nav:hover {
+    background-color: #c7baaa;
+    border-radius: 7px 7px 0px 0px;
+    transition-duration: 0.3s;
+}
+
+/* Estado inicial do dropdown (escondido) */
+.dropdown {
+    display: none; 
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #c7baaa;
+    color: black;
+    padding: 10px;
+    min-width: 140px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 0px 0px 7px 7px; /* Arredonda os cantos inferiores do menu */
+    z-index: 1; /* Garante que o menu fica acima de outros elementos na página */
+}
+
+nav:hover .dropdown {
+    display: block;
+}
+
+/* links dentro do dropdown */
+.dropdown > a {
+    color: black;
+    text-decoration: none; /* Remove o sublinhado dos links */
+    display: block;        /* Faz o link ocupar a linha toda */
+    padding: 5px 0;        /* Espaçamento entre os links */
+}
+
+.dropdown > a:hover {
+    color: #faebd7;
+    font-weight: bold;
+}
+
 
 main {
     border: #faebd7 solid 0px;
@@ -41,8 +89,10 @@ main {
 }
 
 .book img {
-    width: 100%;     /* ocupa toda largura do card */
-    height: auto;    /* mantém proporção */
+    width: 100%;
+    /* ocupa toda largura do card */
+    height: auto;
+    /* mantém proporção */
     border-radius: 8px;
 
     display: block;
@@ -50,41 +100,42 @@ main {
 
 /* Estilos para o modal (fundo da janela?) */
 .modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  justify-content: center;
-  align-items: center;
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
 }
 
 /* Janela */
 .modal-corpo {
-  background-image: linear-gradient(#faebd7, black 190%);;
-  padding: 30px;
-  border-radius: 8px;
-  max-width: 370px;
-  width: 90%;
-  position: relative;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-  font-family: sans-serif;
-  line-height: 1.6;
+    background-image: linear-gradient(#faebd7, black 190%);
+    ;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 370px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    font-family: sans-serif;
+    line-height: 1.6;
 }
 
 .fechar {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  color: #8e8579;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #8e8579;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .fechar:hover {
-  color: #333;
+    color: #333;
 }
