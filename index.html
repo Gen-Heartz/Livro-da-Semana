@@ -11,155 +11,94 @@
 
 <body>
     <header id="menu">
-        <h1>Livro da Semana</h1>
+        <h1>Livros da Semana</h1>
         <nav>
-            Semana 21
+            <!-- Historico da semana, ainda não implementado -->
+            Semana 22
             <div class="dropdown">
                 <a href="#home">Semana 20</a>
                 <a href="#home">Semana 19</a>
                 <a href="#home">Semana 18</a>
             </div>
         </nav>
+
+        <nav>
+            <button id="loginBtn" onclick="toggleLoginBox()">
+                Login ADM
+            </button>
+        </nav>
+
+        <nav>
+            <div id="adminPanel" style="display:none;">
+                <button id="logoutBtn">Sair</button>
+            </div>
+        </nav>
     </header>
+
     <main>
         <h2>Livros</h2>
-        <p>Descubra o livro mais recomendado da semana e mergulhe em uma nova aventura literária!</p>
+        <p>Conheca os livros da semana!</p>
 
-        <div class="books-container">
-
-            <div class="book">
-                <img src="https://img.bertrand.pt/images/amantes-de-buenos-aires-alberto-s-santos/NDV8MjI4NTY0NzZ8MjY0NjE0NzN8MTc3ODIyNjExMTAwMA==/500"
-                    alt="" onclick="abrirModal(this)">
-                <h5>Amantes de Buenos Aires</h5>
-                <div class="sinopse" style="display: none;">
-                    <h3>Amantes de Buenos Aires</h3>
-                    <p>
-                        Este é um romance intenso inspirado na história real de Elisa e Marcela, duas mulheres
-                        apaixonadas que se casaram no altar um século antes da legalização do casamento entre pessoas do
-                        mesmo sexo.
-                    </p>
-
-                    <p>
-                        Elisa cortou o cabelo, trocou as saias por calças e criou uma identidade masculina em Londres, o
-                        suficiente para se fazer passar por Mário e casar-se com Marcela.
-                    </p>
-
-                    <p>
-                        Mas os dias felizes estavam contados. Com a descoberta e a repercussão social do “casamento sem
-                        homem”, o casal viu-se obrigado a exilar-se.
-                    </p>
-
-                    <p>
-                        Tudo se tornou ainda mais intenso quando Marcela, já casada, deu à luz uma filha — um mistério
-                        que acrescenta drama e emotividade a esta poderosa história de amor, cujos ecos ultrapassam as
-                        contingências do tempo.
-                    </p>
-
-                    <p>
-                        Alberto S. Santos parte deste caso verídico para construir uma fascinante saga familiar, onde se
-                        cruzam várias gerações de mulheres fortes, unidas pela busca da verdade do passado que
-                        compartilham.
-                    </p>
-
-                    <p>
-                        Numa vertiginosa viagem de cem anos, o leitor acompanha o nascimento do tango nos prostíbulos de
-                        Buenos Aires e emociona-se com as gentes do Porto — a cidade que acolheu a coragem e a grandeza
-                        de um amor clandestino.
-                    </p>
-                </div>
-            </div>
-
-            <div class="book">
-                <img src="https://img.bertrand.pt/images/lei-da-gravidade-gabriela-ruivo/NDV8Mjg1MzU1Mjh8MjQ5MTM2MzN8MTc3NzAzNjIyNzAwMA==/500"
-                    alt="" onclick="abrirModal(this)">
-                <h5>Lei da Gravidade</h5>
-                <div class="sinopse" style="display: none;">
-                    <h3>Lei da Gravidade</h3>
-                    <p>
-                        Será a vida que imita a literatura, ou o contrário?
-                    </p>
-
-                    <p>
-                        O que terão em comum um velho à beira da morte numa cama de hospital, o escritor de um
-                        bestseller, um pré-adolescente inquieto e um menino de dois anos com um fascínio por livros?
-                    </p>
-
-                    <p>
-                        Que destino espera as amigas Maria Ana e Ana Maria – o espelho uma da outra? Conseguirá uma
-                        livrar-se do marido agressor, e a outra do sofrimento da perda? E Marinela? E Mariana? E a mãe
-                        solteira que existe em todas elas, fruto de um abandono continuado?
-                    </p>
-
-                    <p>
-                        E o pai, protagonista do descalabro? E o futuro, que teima em ser passado, e o passado, que
-                        teima em ser futuro?
-                    </p>
-
-                    <p>
-                        O tempo é o grande mistério. É ele que se ri de nós do outro lado do espelho, no reflexo onde
-                        procuramos o sentido da existência e que teima em nos devolver a imagem do absurdo.
-                    </p>
-
-                    <p>
-                        É também ele que perpetua um incessável padrão de violência, que faz com que a mesma história se
-                        repita uma e outra vez, lutando contra a esperança do leitor de que o ciclo, por fim, se quebre.
-                    </p>
-
-                    <p>
-                        Neste ousado e original romance, Gabriela Ruivo oferece-nos com maestria um universo alternativo
-                        onde o tempo se sujeita à lei da gravidade – a força motriz que agrega passado, presente e
-                        futuro, e dissolve os contornos da realidade.
-                    </p>
-
-                    <p>
-                        Uma obra que convida o leitor a explorar outros mundos no interior dos conceitos de espaço e de
-                        tempo e, em última análise, da própria Literatura.
-                    </p>
-
-                    <p>
-                        O regresso ao romance de uma voz incontornável da Literatura portuguesa contemporânea, vencedora
-                        do Prémio LeYa e do PEN Clube Português Primeira Obra.
-                    </p>
-                </div>
-            </div>
-
-            <div class="book">
-                <img src="https://img.bertrand.pt/images/descubre-turquia-aavv/NDV8MjgyOTE1MTd8MjQ2NTIxNTB8MA==/500"
-                    alt="" onclick="abrirModal(this)">
-                <h5>Livro 3</h5>
-                <div class="sinopse" style="display: none;">
-                    <h3>Sinopse do livro 3</h3>
-                    <p>Sinopse do livro 3...</p>
-                </div>
-            </div>
-
-            <div class="book">
-                <img src="https://img.bertrand.pt/images/descubre-turquia-aavv/NDV8MjgyOTE1MTd8MjQ2NTIxNTB8MA==/500"
-                    alt="" onclick="abrirModal(this)">
-                <h5>Livro 4</h5>
-                <div class="sinopse" style="display: none;">
-                    <h3>Sinopse do livro 4</h3>
-                    <p>Sinopse do livro 4...</p>
-                </div>
-            </div>
-
-        </div>
+        <!-- Container deve ser preenchido pelo JavaScript -->
+        <div class="books-container" id="booksContainer">
+            <p style="text-align:center; color:#888;">Carregando livros...</p>
         </div>
     </main>
-    <!-- Modal para exibir texto -->
-    <div id="meuModal" class="modal">
+
+    <!-- Modal para exibir sinopse -->
+    <div id="meuModal" class="modal" onclick="fecharModalFora(event)">
         <div class="modal-corpo">
             <span class="fechar" onclick="fecharModal()">&times;</span>
             <div id="textoDoModal"></div>
         </div>
     </div>
 
+    <!-- Modal de Login -->
+    <div id="loginOverlay" class="modal" onclick="fecharLoginFora(event)">
+        <div id="loginBox">
+            <span class="fechar" onclick="fecharLoginBox()">&times;</span>
+            <h3>Login Administrador</h3>
+            <input type="email" id="email" placeholder="Email">
+            <input type="password" id="senha" placeholder="Senha">
+            <button id="entrar">Entrar</button>
+            <p id="loginErro" style="color: red; display: none;">Email ou senha incorretos.</p>
+        </div>
+    </div>
+
+    <!-- Modal de Edição de Livro -->
+    <div id="editOverlay" class="modal" onclick="fecharEditFora(event)">
+        <div id="editBox">
+            <span class="fechar" onclick="fecharEditBox()">&times;</span>
+            <h3>Editar Livro</h3>
+
+            <label for="editSelect">Escolher livro:</label>
+            <select id="editSelect">
+                <option value="">-- Selecione --</option>
+            </select>
+
+            <label for="editImagem">Link da Imagem:</label>
+            <input type="text" id="editImagem" placeholder="https://...">
+
+            <label for="editTitulo">Título do Livro:</label>
+            <input type="text" id="editTitulo" placeholder="Título do livro">
+
+            <label for="editSinopse">Sinopse:</label>
+            <textarea id="editSinopse" rows="8"
+                placeholder="Escreva a sinopse aqui. Use linhas em branco para separar parágrafos."></textarea>
+
+            <p class="edit-dica">* Separe parágrafos com uma linha em branco. *</p>
+
+            <button id="salvarEdicao">Salvar Alterações</button>
+            <p id="editMsg" style="display: none;"></p>
+        </div>
+    </div>
+
     <footer>
-        <p>&copy; Todos os direitos reservados.
-            &copy; MIT.
-            &copy; Heartz Company. </p>
+        <p>&copy; Todos os direitos reservados. | MIT | Heartz Company.</p>
     </footer>
-    <script src="js/function.js"></script>
+
+    <script src="js/functions.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 
 </html>
