@@ -24,7 +24,7 @@ header {
     margin: 0;
     background-color: #faebd7;
     border-radius: 10px;
-    padding: 10px 10px 0px 10px;
+    padding: 0px 0px 0px 0px;
 }
 
 /*       NAVEGAÇÃO          */
@@ -35,9 +35,9 @@ nav {
     position: relative;
     display: inline-block;
     color: rgb(0, 0, 0);
-    padding: 5px 5px 3px 5px;
+    padding: 0px 0px 0px 0px;
     cursor: pointer;
-    margin-right: 12px;
+    margin-right: 0px;
     vertical-align: bottom;
     margin-bottom: 0;
 }
@@ -88,6 +88,7 @@ button {
     transition: background-color 0.3s;
     padding: 6px 12px;
     border-radius: 4px;
+    font-size: 14px;
 }
 
 button:hover {
@@ -98,6 +99,7 @@ button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
 }
+
 
 /*          MAIN            */
 
