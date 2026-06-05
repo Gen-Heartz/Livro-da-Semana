@@ -12,15 +12,11 @@
 <body>
     <header id="menu">
         <h1>Livros da Semana</h1>
+
         <nav>
-            <!-- Historico da semana, ainda não implementado -->
             <button id="semanasNav">Semanas</button>
-            <div class="dropdown">
-                <a href="#home">Semana 22</a>
-                <a href="#home">Semana 21</a>
-                <a href="#home">Semana 20</a>
-                <a href="#home">Semana 19</a>
-                <a href="#home">Semana 18</a>
+            <div class="dropdown" id="semanasDropdown">
+                <p class="dropdown-carregando">Carregando...</p>
             </div>
         </nav>
 
@@ -30,18 +26,31 @@
             </button>
         </nav>
 
+        <!-- Botão ADM - só aparece para admin -->
         <nav>
             <div id="adminPanel" style="display:none;">
                 <button id="logoutBtn">Sair</button>
             </div>
         </nav>
+        <!-- Botão ADM - só aparece para admin -->
+        <nav id="finalizarNav" style="display:none;">
+            <button id="finalizarBtn">Finalizar Semana</button>
+        </nav>
+        <!-- Botão ADM - só aparece para admin -->
+        <nav id="desfazerNav" style="display:none;">
+            <button id="desfazerBtn">Desfazer</button>
+        </nav>
     </header>
 
     <main>
-        <h2>Semana 23</h2>
-        <p>Conheca os livros da semana!</p>
+        <h2 id="tituloSemana">Semana ...</h2>
+        <p id="subtituloSemana">Conheça os livros da semana!</p>
 
-        <!-- Container deve ser preenchido pelo JavaScript -->
+        <!-- Botão voltar -->
+        <button id="voltarAtual" style="display:none;" onclick="voltarParaAtual()">
+            ← Voltar para semana atual
+        </button>
+
         <div class="books-container" id="booksContainer">
             <p style="text-align:center; color:#888;">Carregando livros...</p>
         </div>
@@ -92,6 +101,141 @@
 
             <button id="salvarEdicao">Salvar Alterações</button>
             <p id="editMsg" style="display: none;"></p>
+        </div>
+    </div>
+
+    <!--Painel Flutuante de Notas(independente do modal) -->
+
+    <div id="notasFloat" style="display:none;">
+        <div class="notas-header">
+            <h4>📝 Guia de Formatação</h4>
+        </div>
+        <div class="notas-corpo">
+
+            <div class="nota-secao">
+                <h5>Texto</h5>
+                <div class="nota-item">
+                    <code>&lt;strong&gt;texto&lt;/strong&gt;</code>
+                    <span class="nota-resultado"><strong>texto</strong></span>
+                </div>
+                <div class="nota-item">
+                    <code>&lt;em&gt;texto&lt;/em&gt;</code>
+                    <span class="nota-resultado"><em>texto</em></span>
+                </div>
+                <div class="nota-item">
+                    <code>&lt;u&gt;texto&lt;/u&gt;</code>
+                    <span class="nota-resultado"><u>texto</u></span>
+                </div>
+                <div class="nota-item">
+                    <code>&lt;s&gt;texto&lt;/s&gt;</code>
+                    <span class="nota-resultado"><s>texto</s></span>
+                </div>
+                <div class="nota-item">
+                    <code>&lt;mark&gt;texto&lt;/mark&gt;</code>
+                    <span class="nota-resultado"><mark>texto</mark></span>
+                </div>
+            </div>
+
+            <div class="nota-secao">
+                <h5>Tamanho</h5>
+                <div class="nota-item">
+                    <code>&lt;small&gt;texto&lt;/small&gt;</code>
+                    <span class="nota-resultado"><small>pequeno</small></span>
+                </div>
+                <div class="nota-item">
+                    <code>&lt;big&gt;texto&lt;/big&gt;</code>
+                    <span class="nota-resultado"><big>grande</big></span>
+                </div>
+            </div>
+
+            <div class="nota-secao">
+                <h5>Títulos</h5>
+                <div class="nota-item">
+                    <code>&lt;h3&gt;título&lt;/h3&gt;</code>
+                    <span class="nota-resultado" style="font-size:14px;font-weight:bold;">Título</span>
+                </div>
+                <div class="nota-item">
+                    <code>&lt;h4&gt;subtítulo&lt;/h4&gt;</code>
+                    <span class="nota-resultado" style="font-size:12px;font-weight:bold;">Subtítulo</span>
+                </div>
+            </div>
+
+            <div class="nota-secao">
+                <h5>Estrutura</h5>
+                <div class="nota-item">
+                    <code>&lt;br&gt;</code>
+                    <span class="nota-resultado">Quebra de linha</span>
+                </div>
+                <div class="nota-item">
+                    <code>&lt;hr&gt;</code>
+                    <span class="nota-resultado">Linha separadora ───</span>
+                </div>
+            </div>
+
+            <div class="nota-secao">
+                <h5>Combinações</h5>
+                <div class="nota-item combinacao">
+                    <code>&lt;strong&gt;&lt;em&gt;texto&lt;/em&gt;&lt;/strong&gt;</code>
+                    <span class="nota-resultado"><strong><em>negrito itálico</em></strong></span>
+                </div>
+                <div class="nota-item combinacao">
+                    <code>&lt;u&gt;&lt;strong&gt;texto&lt;/strong&gt;&lt;/u&gt;</code>
+                    <span class="nota-resultado"><u><strong>sublinhado negrito</strong></u></span>
+                </div>
+            </div>
+
+            <div class="nota-secao">
+                <h5>Dicas</h5>
+                <ul class="nota-dicas">
+                    <li>Use <strong>linha em branco</strong> para separar parágrafos</li>
+                    <li>Tags podem ser combinadas</li>
+                    <li>Sempre feche as tags na ordem inversa</li>
+                    <li><code>&lt;br&gt;</code> e <code>&lt;hr&gt;</code> não precisam fechar</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal de Confirmação para Finalizar Semana -->
+    <div id="finalizarOverlay" class="modal" onclick="fecharFinalizarFora(event)">
+        <div id="finalizarBox">
+            <span class="fechar" onclick="fecharFinalizarBox()">&times;</span>
+            <h3>⚠ Finalizar Semana</h3>
+            <p id="finalizarTexto">
+                Tem certeza que deseja finalizar a <strong>Semana 23</strong>?
+            </p>
+            <p class="finalizar-aviso">
+                Os livros atuais serão salvos no histórico e a semana avançará.
+                Esta ação só é desfeita ao clicar no botão "Desfazer".
+            </p>
+            <div class="finalizar-botoes">
+                <button id="cancelarFinalizar" onclick="fecharFinalizarBox()">Cancelar</button>
+                <button id="confirmarFinalizar">Confirmar</button>
+            </div>
+            <p id="finalizarMsg" style="display:none;"></p>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmação para Desfazer Semana -->
+    <div id="desfazerOverlay" class="modal" onclick="fecharDesfazerFora(event)">
+        <div id="desfazerBox">
+            <span class="fechar" onclick="fecharDesfazerBox()">&times;</span>
+            <h3>⟲ Desfazer Finalização</h3>
+            <p id="desfazerTexto">
+                Isso vai restaurar a semana anterior e apagar o avanço.
+            </p>
+            <p class="desfazer-aviso">
+                * Os livros da semana anterior serão restaurados.
+            </p>
+            <p class="desfazer-aviso">
+                * Esta ação é irreversível e só deve ser usada se a semana atual foi finalizada por engano.
+            </p>
+            <div class="desfazer-botoes">
+                <button id="cancelarDesfazer" onclick="fecharDesfazerBox()">Cancelar</button>
+                <button id="confirmarDesfazer">Desfazer</button>
+            </div>
+            <p id="desfazerMsg" style="display:none;"></p>
         </div>
     </div>
 
