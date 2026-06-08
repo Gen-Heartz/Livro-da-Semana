@@ -114,3 +114,51 @@ function fecharDesfazerFora(event) {
 function voltarParaAtual() {
     // será sobrescrita em script.js
 }
+
+// ========================
+// IMPRIMIR SINOPSES
+// ========================
+
+function imprimirSinopses() {
+    const container = document.getElementById("printContent");
+    const livros = document.querySelectorAll(".book");
+
+    // Limpa o conteúdo anterior
+    container.innerHTML = "";
+
+    // Verifica se há livros
+    if (livros.length === 0) {
+        alert("Nenhum livro para imprimir!");
+        return;
+    }
+
+    // Percorre cada livro e cria o HTML de impressão
+    livros.forEach((livro) => {
+        const titulo = livro.querySelector("h5").textContent;
+        const sinopseDiv = livro.querySelector(".sinopse");
+
+        // Pega apenas os parágrafos da sinopse (sem o h3)
+        let sinopseHTML = "";
+        if (sinopseDiv) {
+            const paragrafos = sinopseDiv.querySelectorAll("p");
+            paragrafos.forEach((p) => {
+                sinopseHTML += `<p>${p.textContent}</p>`;
+            });
+        }
+
+        // Cria o bloco do livro para impressão
+        const livroDiv = document.createElement("div");
+        livroDiv.classList.add("print-livro");
+        livroDiv.innerHTML = `
+            <h3>${titulo}</h3>
+            ${sinopseHTML || "<p><em>Sinopse não disponível.</em></p>"}
+        `;
+
+        container.appendChild(livroDiv);
+    });
+
+    // Aguarda o DOM atualizar e depois imprime
+    setTimeout(() => {
+        window.print();
+    }, 100);
+}

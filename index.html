@@ -19,7 +19,13 @@
                 <p class="dropdown-carregando">Carregando...</p>
             </div>
         </nav>
-
+        
+        <nav>
+            <button id="btnImprimir" onclick="imprimirSinopses()">
+                Imprimir Sinopses
+            </button>
+        </nav>
+        
         <nav>
             <button id="loginBtn" onclick="toggleLoginBox()">
                 Login Admin
@@ -108,7 +114,7 @@
 
     <div id="notasFloat" style="display:none;">
         <div class="notas-header">
-            <h4>📝 Guia de Formatação</h4>
+            <h4> Guia de Formatação</h4>
         </div>
         <div class="notas-corpo">
 
@@ -246,5 +252,9 @@
     <script src="js/functions.js"></script>
     <script type="module" src="script.js"></script>
 </body>
+
+<div id="areaPrint">
+    <div id="printContent"></div>
+</div>
 
 </html>

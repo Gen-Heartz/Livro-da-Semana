@@ -829,3 +829,86 @@ footer p {
         width: 100%;
     }
 }
+
+
+/* ======================== */
+/*    ÁREA DE IMPRESSÃO     */
+/* ======================== */
+
+/* Escondido na tela normal */
+#areaPrint {
+    display: none;
+}
+
+/* ======================== */
+/*    ESTILOS DE IMPRESSÃO  */
+/* ======================== */
+
+@media print {
+    /* Esconde tudo */
+    body * {
+        visibility: hidden;
+    }
+
+    /* Mostra apenas a área de impressão */
+    #areaPrint,
+    #areaPrint * {
+        visibility: visible;
+    }
+
+    #areaPrint {
+        display: block !important;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        padding: 20px;
+    }
+
+    #areaPrint h1 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 24px;
+        color: #333;
+    }
+
+    /* Grid 2x2 para os livros */
+    #printContent {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 20px;
+    }
+
+    .print-livro {
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+        page-break-inside: avoid;
+    }
+
+    .print-livro h3 {
+        margin: 0 0 10px 0;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #5a4630;
+        font-size: 16px;
+        color: #5a4630;
+    }
+
+    .print-livro p {
+        font-size: 11px;
+        line-height: 1.5;
+        margin: 8px 0;
+        text-align: justify;
+    }
+
+    /* Esconde elementos desnecessários na impressão */
+    header, 
+    footer, 
+    .modal, 
+    #loginOverlay, 
+    #editOverlay,
+    #btnImprimir,
+    .btn-editar-livro {
+        display: none !important;
+    }
+}
