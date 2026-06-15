@@ -556,7 +556,7 @@ document.getElementById("confirmarDesfazer").addEventListener("click", async () 
         const historicoSnapshot = await getDocs(historicoRef);
 
         if (historicoSnapshot.empty) {
-            msgEl.textContent = `❌ Histórico da Semana ${semanaAnterior} não encontrado.`;
+            msgEl.textContent = ` Histórico da Semana ${semanaAnterior} não encontrado.`;
             msgEl.className = "erro";
             msgEl.style.display = "block";
             return;
@@ -595,7 +595,7 @@ document.getElementById("confirmarDesfazer").addEventListener("click", async () 
         });
         console.log(`✅ Semana revertida para ${semanaAnterior}`);
 
-        msgEl.textContent = `✅ Restaurado! Voltamos para a Semana ${semanaAnterior}.`;
+        msgEl.textContent = ` Restaurado! Voltamos para a Semana ${semanaAnterior}.`;
         msgEl.className = "sucesso";
         msgEl.style.display = "block";
 
@@ -609,8 +609,8 @@ document.getElementById("confirmarDesfazer").addEventListener("click", async () 
         }, 2500);
 
     } catch (erro) {
-        console.error("❌ Erro ao desfazer:", erro);
-        msgEl.textContent = "❌ Erro ao restaurar. Verifique o console.";
+        console.error(" Erro ao desfazer:", erro);
+        msgEl.textContent = " Erro ao restaurar. Verifique o console.";
         msgEl.className = "erro";
         msgEl.style.display = "block";
     } finally {
