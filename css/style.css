@@ -835,7 +835,6 @@ footer p {
 /*    ÁREA DE IMPRESSÃO     */
 /* ======================== */
 
-/* Escondido na tela normal */
 #areaPrint {
     display: none;
 }
@@ -845,6 +844,13 @@ footer p {
 /* ======================== */
 
 @media print {
+
+    /* Força paisagem e tamanho A4 */
+    @page {
+        size: A4 landscape;
+        margin: 5mm;
+    }
+
     /* Esconde tudo */
     body * {
         visibility: hidden;
@@ -862,50 +868,99 @@ footer p {
         left: 0;
         top: 0;
         width: 100%;
-        padding: 20px;
+        padding: 0;
     }
 
     #areaPrint h1 {
         text-align: center;
-        margin-bottom: 30px;
-        font-size: 24px;
+        margin: 0 0 10px 0;
+        font-size: 20px;
         color: #333;
     }
 
-    /* Grid 2x2 para os livros */
+    /* Grid 4 colunas */
     #printContent {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
-        gap: 20px;
+        gap: 10px;
     }
 
     .print-livro {
         border: 1px solid #ccc;
-        padding: 10px;
+        padding: 8px;
         border-radius: 5px;
         page-break-inside: avoid;
+        overflow: hidden;
     }
 
     .print-livro h3 {
         margin: 0 0 10px 0;
-        padding-bottom: 8px;
-        border-bottom: 2px solid #5a4630;
+        padding-bottom: 4px;
+        border-bottom: 2px solid #000000;
+        font-size: 20px;
+        color: #000000;
+    }
+
+    .print-livro h4 {
         font-size: 16px;
-        color: #5a4630;
+        margin: 4px 0;
+        color: #000000;
     }
 
     .print-livro p {
-        font-size: 11px;
-        line-height: 1.5;
-        margin: 8px 0;
-        text-align: justify;
+        font-size: 16px;
+        line-height: 1.15;
+        margin: 3px 0;
     }
 
-    /* Esconde elementos desnecessários na impressão */
-    header, 
-    footer, 
-    .modal, 
-    #loginOverlay, 
+    /* Formatação dentro da sinopse */
+    .print-livro strong {
+        font-weight: bold;
+    }
+
+    .print-livro em {
+        font-style: italic;
+    }
+
+    .print-livro u {
+        text-decoration: underline;
+    }
+
+    .print-livro s {
+        text-decoration: line-through;
+    }
+
+    .print-livro mark {
+        background-color: #000000;
+        padding: 0 2px;
+    }
+
+    .print-livro small {
+        font-size: 7px;
+    }
+
+    .print-livro big {
+        font-size: 10px;
+    }
+
+    .print-livro hr {
+        border: none;
+        border-top: 1px solid #ccc;
+        margin: 4px 0;
+    }
+
+    .print-livro br {
+        display: block;
+        content: "";
+        margin: 2px 0;
+    }
+
+    /* Esconde elementos desnecessários */
+    header,
+    footer,
+    main,
+    .modal,
+    #loginOverlay,
     #editOverlay,
     #btnImprimir,
     .btn-editar-livro {

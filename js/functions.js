@@ -115,38 +115,35 @@ function voltarParaAtual() {
     // será sobrescrita em script.js
 }
 
-// ========================
-// IMPRIMIR SINOPSES
-// ========================
-
 function imprimirSinopses() {
     const container = document.getElementById("printContent");
     const livros = document.querySelectorAll(".book");
 
-    // Limpa o conteúdo anterior
     container.innerHTML = "";
 
-    // Verifica se há livros
     if (livros.length === 0) {
         alert("Nenhum livro para imprimir!");
         return;
     }
 
-    // Percorre cada livro e cria o HTML de impressão
     livros.forEach((livro) => {
         const titulo = livro.querySelector("h5").textContent;
         const sinopseDiv = livro.querySelector(".sinopse");
 
-        // Pega apenas os parágrafos da sinopse (sem o h3)
+        // Pega TODO o HTML interno da sinopse, mantendo formatação
         let sinopseHTML = "";
         if (sinopseDiv) {
-            const paragrafos = sinopseDiv.querySelectorAll("p");
-            paragrafos.forEach((p) => {
-                sinopseHTML += `<p>${p.textContent}</p>`;
-            });
+            // Clona para não modificar o original
+            const clone = sinopseDiv.cloneNode(true);
+
+            // Remove o h3 do clone (já vamos usar o título separado)
+            const h3 = clone.querySelector("h3");
+            if (h3) h3.remove();
+
+            // Pega o HTML com todas as tags de formatação
+            sinopseHTML = clone.innerHTML;
         }
 
-        // Cria o bloco do livro para impressão
         const livroDiv = document.createElement("div");
         livroDiv.classList.add("print-livro");
         livroDiv.innerHTML = `
@@ -157,7 +154,6 @@ function imprimirSinopses() {
         container.appendChild(livroDiv);
     });
 
-    // Aguarda o DOM atualizar e depois imprime
     setTimeout(() => {
         window.print();
     }, 100);
