@@ -1,0 +1,152 @@
+/* ======================== */
+/*    ESTILOS ESPECÍFICOS   */
+/*    PÁGINA OUTROS         */
+/* ======================== */
+
+/* Link de navegação no header */
+.nav-link {
+    color: #000000;
+    text-decoration: none;
+}
+
+/* ======================== */
+/*  GRID DE GÉNEROS (2x2)   */
+/* ======================== */
+
+/* O main vira um grid de 2 colunas para os géneros */
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+/* Seções de género */
+.genero-secao {
+    background-color: #faebd7;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.genero-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #c7baaa;
+}
+
+.genero-header h2 {
+    margin: 0;
+    font-size: 1.1em;
+    color: #5a4630;
+}
+
+/* Livros dentro de cada género: 2 por linha */
+.genero-secao .books-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+/* Livros menores */
+.genero-secao .book img {
+    max-height: 280px;
+    object-fit: cover;
+}
+
+.genero-secao .book h5 {
+    font-size: 12px;
+}
+
+/* Se o último género ficar sozinho (ímpar),
+   ocupa as 2 colunas e centraliza */
+.genero-secao:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    max-width: 50%;
+    justify-self: center;
+}
+
+/* Select de género no modal de edição */
+#editGenero {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #c7baaa;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    margin-bottom: 5px;
+    transition: border-color 0.3s;
+    font-family: inherit;
+}
+
+#editGenero:focus {
+    border-color: #8b7355;
+}
+
+/* ======================== */
+/*      RESPONSIVO          */
+/* ======================== */
+
+/* Tablet */
+@media (max-width: 800px) {
+    main {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .genero-header h2 {
+        font-size: 1em;
+    }
+
+    .genero-secao .book img {
+        max-height: 220px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    main {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .genero-secao {
+        padding: 12px;
+    }
+
+    .genero-header h2 {
+        font-size: 1em;
+    }
+
+    .genero-secao .books-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .genero-secao .book img {
+        max-height: none;
+    }
+
+    .genero-secao:last-child:nth-child(odd) {
+        max-width: 100%;
+    }
+}
+
+/* ======================== */
+/*    IMPRESSÃO OUTROS      */
+/* ======================== */
+
+@media print {
+    main {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .genero-secao {
+        page-break-inside: avoid;
+        margin-bottom: 10px;
+    }
+
+    .genero-header {
+        border-bottom-color: #000;
+    }
+}

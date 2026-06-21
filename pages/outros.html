@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livros por Género</title>
+    <link rel="icon" type="image/x-icon" href="../data/favicon_io (1)/favicon-32x32.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/outros.css">
+</head>
+
+<body>
+    <header id="menu">
+        <h1>Outros</h1>
+
+        <nav>
+            <button>
+                <a href="../index.html" class="nav-link">Livros da Semana</a>
+            </button>
+        </nav>
+
+        <nav>
+            <button id="loginBtn" onclick="toggleLoginBox()">
+                Login Admin
+            </button>
+        </nav>
+
+        <nav>
+            <div id="adminPanel" style="display:none;">
+                <button id="logoutBtn">Sair</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- INFANTIL -->
+        <section class="genero-secao" id="secaoInfantil">
+            <div class="genero-header">
+                <h2>Infantil</h2>
+            </div>
+            <div class="books-container" id="booksInfantil">
+                <p style="text-align:center; color:#888;">Carregando...</p>
+            </div>
+        </section>
+
+        <!-- FICÇÃO - FANTÁSTICO -->
+        <section class="genero-secao" id="secaoFantastico">
+            <div class="genero-header">
+                <h2>Ficção — Fantástico</h2>
+            </div>
+            <div class="books-container" id="booksFantastico">
+                <p style="text-align:center; color:#888;">Carregando...</p>
+            </div>
+        </section>
+
+        <!-- FICÇÃO - ROMANCE -->
+        <section class="genero-secao" id="secaoRomance">
+            <div class="genero-header">
+                <h2>Ficção — Romance</h2>
+            </div>
+            <div class="books-container" id="booksRomance">
+                <p style="text-align:center; color:#888;">Carregando...</p>
+            </div>
+        </section>
+
+        <!-- NÃO FICÇÃO -->
+        <section class="genero-secao" id="secaoNaoFiccao">
+            <div class="genero-header">
+                <h2>Não Ficção</h2>
+            </div>
+            <div class="books-container" id="booksNaoFiccao">
+                <p style="text-align:center; color:#888;">Carregando...</p>
+            </div>
+        </section>
+
+        <!-- JOVEM ADULTO -->
+        <section class="genero-secao" id="secaoJovemAdulto">
+            <div class="genero-header">
+                <h2>Jovem Adulto</h2>
+            </div>
+            <div class="books-container" id="booksJovemAdulto">
+                <p style="text-align:center; color:#888;">Carregando...</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal para exibir sinopse -->
+    <div id="meuModal" class="modal" onclick="fecharModalFora(event)">
+        <div class="modal-corpo">
+            <span class="fechar" onclick="fecharModal()">&times;</span>
+            <div id="textoDoModal"></div>
+        </div>
+    </div>
+
+    <!-- Modal de Login -->
+    <div id="loginOverlay" class="modal" onclick="fecharLoginFora(event)">
+        <div id="loginBox">
+            <span class="fechar" onclick="fecharLoginBox()">&times;</span>
+            <h3>Login Administrador</h3>
+            <input type="email" id="email" placeholder="Email" autocomplete="email">
+            <input type="password" id="senha" placeholder="Senha" autocomplete="current-password">
+            <button id="entrar">Entrar</button>
+            <p id="loginErro" style="color: red; display: none;">Email ou senha incorretos.</p>
+        </div>
+    </div>
+
+    <!-- Modal de Edição de Livro -->
+    <div id="editOverlay" class="modal" onclick="fecharEditFora(event)">
+        <div class="edit-container">
+
+            <!-- Guia de Formatação -->
+            <div id="notasFloat" style="display:none;">
+                <div class="notas-header">
+                    <h4>Guia de Formatação</h4>
+                </div>
+                <div class="notas-corpo">
+                    <div class="nota-secao">
+                        <h5>Texto</h5>
+                        <div class="nota-item">
+                            <code>&lt;strong&gt;texto&lt;/strong&gt;</code>
+                            <span class="nota-resultado"><strong>texto</strong></span>
+                        </div>
+                        <div class="nota-item">
+                            <code>&lt;em&gt;texto&lt;/em&gt;</code>
+                            <span class="nota-resultado"><em>texto</em></span>
+                        </div>
+                        <div class="nota-item">
+                            <code>&lt;u&gt;texto&lt;/u&gt;</code>
+                            <span class="nota-resultado"><u>texto</u></span>
+                        </div>
+                        <div class="nota-item">
+                            <code>&lt;s&gt;texto&lt;/s&gt;</code>
+                            <span class="nota-resultado"><s>texto</s></span>
+                        </div>
+                        <div class="nota-item">
+                            <code>&lt;mark&gt;texto&lt;/mark&gt;</code>
+                            <span class="nota-resultado"><mark>texto</mark></span>
+                        </div>
+                    </div>
+                    <div class="nota-secao">
+                        <h5>Estrutura</h5>
+                        <div class="nota-item">
+                            <code>&lt;br&gt;</code>
+                            <span class="nota-resultado">Quebra de linha</span>
+                        </div>
+                        <div class="nota-item">
+                            <code>&lt;hr&gt;</code>
+                            <span class="nota-resultado">Linha ───</span>
+                        </div>
+                    </div>
+                    <div class="nota-secao">
+                        <h5>Dicas</h5>
+                        <ul class="nota-dicas">
+                            <li>Linha em branco = novo parágrafo</li>
+                            <li>Tags podem ser combinadas</li>
+                            <li>Feche na ordem inversa</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Painel de Edição -->
+            <div id="editBox">
+                <span class="fechar" onclick="fecharEditBox()">&times;</span>
+                <h3>Editar Livro</h3>
+
+                <label for="editGenero">Género:</label>
+                <select id="editGenero">
+                    <option value="">-- Selecione o género --</option>
+                    <option value="infantil">Infantil</option>
+                    <option value="fantastico">Ficção — Fantástico</option>
+                    <option value="romance">Ficção — Romance</option>
+                    <option value="naoficcao">Não Ficção</option>
+                    <option value="jovemadulto">Jovem Adulto</option>
+                </select>
+
+                <label for="editSelect">Escolher livro:</label>
+                <select id="editSelect">
+                    <option value="">-- Selecione o livro --</option>
+                </select>
+
+                <label for="editImagem">Link da Imagem:</label>
+                <input type="text" id="editImagem" placeholder="https://...">
+
+                <label for="editTitulo">Título do Livro:</label>
+                <input type="text" id="editTitulo" placeholder="Título do livro">
+
+                <label for="editSinopse">Sinopse:</label>
+                <textarea id="editSinopse" rows="8" placeholder="Escreva a sinopse aqui."></textarea>
+
+                <p class="edit-dica">* Separe parágrafos com uma linha em branco. *</p>
+
+                <button id="salvarEdicao">Salvar Alterações</button>
+                <p id="editMsg" style="display: none;"></p>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; Todos os direitos reservados. | MIT | Heartz Company.</p>
+    </footer>
+
+    <script src="../js/functions.js"></script>
+    <script type="module" src="../js/outros.js"></script>
+</body>
+
+<div id="areaPrint">
+    <div id="printContent"></div>
+</div>
+
+</html>
