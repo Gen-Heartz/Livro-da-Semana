@@ -19,13 +19,13 @@
                 <p class="dropdown-carregando">Carregando...</p>
             </div>
         </nav>
-        
+
         <nav>
             <button id="btnImprimir" onclick="imprimirSinopses()">
                 Imprimir Sinopses
             </button>
         </nav>
-        
+
         <nav>
             <button id="loginBtn" onclick="toggleLoginBox()">
                 Login Admin
@@ -84,120 +84,126 @@
 
     <!-- Modal de Edição de Livro -->
     <div id="editOverlay" class="modal" onclick="fecharEditFora(event)">
-        <div id="editBox">
-            <span class="fechar" onclick="fecharEditBox()">&times;</span>
-            <h3>Editar Livro</h3>
 
-            <label for="editSelect">Escolher livro:</label>
-            <select id="editSelect">
-                <option value="">-- Selecione --</option>
-            </select>
+        <!-- Container que agrupa os dois lado a lado -->
+        <div class="edit-container">
 
-            <label for="editImagem">Link da Imagem:</label>
-            <input type="text" id="editImagem" placeholder="https://...">
-
-            <label for="editTitulo">Título do Livro:</label>
-            <input type="text" id="editTitulo" placeholder="Título do livro">
-
-            <label for="editSinopse">Sinopse:</label>
-            <textarea id="editSinopse" rows="8"
-                placeholder="Escreva a sinopse aqui. Use linhas em branco para separar parágrafos."></textarea>
-
-            <p class="edit-dica">* Separe parágrafos com uma linha em branco. *</p>
-
-            <button id="salvarEdicao">Salvar Alterações</button>
-            <p id="editMsg" style="display: none;"></p>
-        </div>
-    </div>
-
-    <!--Painel Flutuante de Notas(independente do modal) -->
-
-    <div id="notasFloat" style="display:none;">
-        <div class="notas-header">
-            <h4> Guia de Formatação</h4>
-        </div>
-        <div class="notas-corpo">
-
-            <div class="nota-secao">
-                <h5>Texto</h5>
-                <div class="nota-item">
-                    <code>&lt;strong&gt;texto&lt;/strong&gt;</code>
-                    <span class="nota-resultado"><strong>texto</strong></span>
+            <!-- GUIA DE FORMATAÇÃO (esquerda) -->
+            <div id="notasFloat" style="display:none;">
+                <div class="notas-header">
+                    <h4>Guia de Formatação</h4>
                 </div>
-                <div class="nota-item">
-                    <code>&lt;em&gt;texto&lt;/em&gt;</code>
-                    <span class="nota-resultado"><em>texto</em></span>
-                </div>
-                <div class="nota-item">
-                    <code>&lt;u&gt;texto&lt;/u&gt;</code>
-                    <span class="nota-resultado"><u>texto</u></span>
-                </div>
-                <div class="nota-item">
-                    <code>&lt;s&gt;texto&lt;/s&gt;</code>
-                    <span class="nota-resultado"><s>texto</s></span>
-                </div>
-                <div class="nota-item">
-                    <code>&lt;mark&gt;texto&lt;/mark&gt;</code>
-                    <span class="nota-resultado"><mark>texto</mark></span>
-                </div>
-            </div>
+                <div class="notas-corpo">
 
-            <div class="nota-secao">
-                <h5>Tamanho</h5>
-                <div class="nota-item">
-                    <code>&lt;small&gt;texto&lt;/small&gt;</code>
-                    <span class="nota-resultado"><small>pequeno</small></span>
-                </div>
-                <div class="nota-item">
-                    <code>&lt;big&gt;texto&lt;/big&gt;</code>
-                    <span class="nota-resultado"><big>grande</big></span>
-                </div>
-            </div>
+                    <div class="nota-secao">
+                        <h5>Texto</h5>
+                        <div class="nota-item">
+                            <code>&lt;strong&gt;texto&lt;/strong&gt;</code>
+                            <span class="nota-resultado"><strong>texto</strong></span>
+                        </div>
+                        <div class="nota-item">
+                            <code>&lt;em&gt;texto&lt;/em&gt;</code>
+                            <span class="nota-resultado"><em>texto</em></span>
+                        </div>
+                        <div class="nota-item">
+                            <code>&lt;u&gt;texto&lt;/u&gt;</code>
+                            <span class="nota-resultado"><u>texto</u></span>
+                        </div>
+                        <div class="nota-item">
+                            <code>&lt;s&gt;texto&lt;/s&gt;</code>
+                            <span class="nota-resultado"><s>texto</s></span>
+                        </div>
+                        <div class="nota-item">
+                            <code>&lt;mark&gt;texto&lt;/mark&gt;</code>
+                            <span class="nota-resultado"><mark>texto</mark></span>
+                        </div>
+                    </div>
 
-            <div class="nota-secao">
-                <h5>Títulos</h5>
-                <div class="nota-item">
-                    <code>&lt;h3&gt;título&lt;/h3&gt;</code>
-                    <span class="nota-resultado" style="font-size:14px;font-weight:bold;">Título</span>
-                </div>
-                <div class="nota-item">
-                    <code>&lt;h4&gt;subtítulo&lt;/h4&gt;</code>
-                    <span class="nota-resultado" style="font-size:12px;font-weight:bold;">Subtítulo</span>
-                </div>
-            </div>
+                    <div class="nota-secao">
+                        <h5>Tamanho</h5>
+                        <div class="nota-item">
+                            <code>&lt;small&gt;texto&lt;/small&gt;</code>
+                            <span class="nota-resultado"><small>pequeno</small></span>
+                        </div>
+                        <div class="nota-item">
+                            <code>&lt;big&gt;texto&lt;/big&gt;</code>
+                            <span class="nota-resultado"><big>grande</big></span>
+                        </div>
+                    </div>
 
-            <div class="nota-secao">
-                <h5>Estrutura</h5>
-                <div class="nota-item">
-                    <code>&lt;br&gt;</code>
-                    <span class="nota-resultado">Quebra de linha</span>
-                </div>
-                <div class="nota-item">
-                    <code>&lt;hr&gt;</code>
-                    <span class="nota-resultado">Linha separadora ───</span>
-                </div>
-            </div>
+                    <div class="nota-secao">
+                        <h5>Títulos</h5>
+                        <div class="nota-item">
+                            <code>&lt;h3&gt;título&lt;/h3&gt;</code>
+                            <span class="nota-resultado" style="font-size:14px;font-weight:bold;">Título</span>
+                        </div>
+                        <div class="nota-item">
+                            <code>&lt;h4&gt;subtítulo&lt;/h4&gt;</code>
+                            <span class="nota-resultado" style="font-size:12px;font-weight:bold;">Subtítulo</span>
+                        </div>
+                    </div>
 
-            <div class="nota-secao">
-                <h5>Combinações</h5>
-                <div class="nota-item combinacao">
-                    <code>&lt;strong&gt;&lt;em&gt;texto&lt;/em&gt;&lt;/strong&gt;</code>
-                    <span class="nota-resultado"><strong><em>negrito itálico</em></strong></span>
-                </div>
-                <div class="nota-item combinacao">
-                    <code>&lt;u&gt;&lt;strong&gt;texto&lt;/strong&gt;&lt;/u&gt;</code>
-                    <span class="nota-resultado"><u><strong>sublinhado negrito</strong></u></span>
+                    <div class="nota-secao">
+                        <h5>Estrutura</h5>
+                        <div class="nota-item">
+                            <code>&lt;br&gt;</code>
+                            <span class="nota-resultado">Quebra de linha</span>
+                        </div>
+                        <div class="nota-item">
+                            <code>&lt;hr&gt;</code>
+                            <span class="nota-resultado">Linha separadora ───</span>
+                        </div>
+                    </div>
+
+                    <div class="nota-secao">
+                        <h5>Combinações</h5>
+                        <div class="nota-item combinacao">
+                            <code>&lt;strong&gt;&lt;em&gt;texto&lt;/em&gt;&lt;/strong&gt;</code>
+                            <span class="nota-resultado"><strong><em>negrito itálico</em></strong></span>
+                        </div>
+                        <div class="nota-item combinacao">
+                            <code>&lt;u&gt;&lt;strong&gt;texto&lt;/strong&gt;&lt;/u&gt;</code>
+                            <span class="nota-resultado"><u><strong>sublinhado negrito</strong></u></span>
+                        </div>
+                    </div>
+
+                    <div class="nota-secao">
+                        <h5>Dicas</h5>
+                        <ul class="nota-dicas">
+                            <li>Use <strong>linha em branco</strong> para separar parágrafos</li>
+                            <li>Tags podem ser combinadas</li>
+                            <li>Sempre feche as tags na ordem inversa</li>
+                            <li><code>&lt;br&gt;</code> e <code>&lt;hr&gt;</code> não precisam fechar</li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
 
-            <div class="nota-secao">
-                <h5>Dicas</h5>
-                <ul class="nota-dicas">
-                    <li>Use <strong>linha em branco</strong> para separar parágrafos</li>
-                    <li>Tags podem ser combinadas</li>
-                    <li>Sempre feche as tags na ordem inversa</li>
-                    <li><code>&lt;br&gt;</code> e <code>&lt;hr&gt;</code> não precisam fechar</li>
-                </ul>
+            <!-- PAINEL DE EDIÇÃO (direita) -->
+            <div id="editBox">
+                <span class="fechar" onclick="fecharEditBox()">&times;</span>
+                <h3>Editar Livro</h3>
+
+                <label for="editSelect">Escolher livro:</label>
+                <select id="editSelect">
+                    <option value="">-- Selecione --</option>
+                </select>
+
+                <label for="editImagem">Link da Imagem:</label>
+                <input type="text" id="editImagem" placeholder="https://...">
+
+                <label for="editTitulo">Título do Livro:</label>
+                <input type="text" id="editTitulo" placeholder="Título do livro">
+
+                <label for="editSinopse">Sinopse:</label>
+                <textarea id="editSinopse" rows="8"
+                    placeholder="Escreva a sinopse aqui. Use linhas em branco para separar parágrafos."></textarea>
+
+                <p class="edit-dica">* Separe parágrafos com uma linha em branco. *</p>
+
+                <button id="salvarEdicao">Salvar Alterações</button>
+                <p id="editMsg" style="display: none;"></p>
             </div>
 
         </div>

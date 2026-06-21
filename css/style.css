@@ -430,23 +430,52 @@ main h2 {
     font-size: 13px;
 }
 
-/*    MODAL DE EDIÇÃO       */
+/*  ================================  */
+/*    MODAL DE EDIÇÃO + NOTAS         */
+/*  ================================  */
 
 #editOverlay {
     z-index: 1200;
+
+    /* Permite rolar se o conteúdo for grande */
+    align-items: flex-start;
+    padding: 20px 0;
+    overflow-y: auto;
 }
+
+/* Container flex que agrupa Notas + EditBox */
+.edit-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 15px;
+
+    /* Largura máxima do conjunto */
+    width: 95%;
+    max-width: 820px;
+
+    /* Garante que não ultrapasse a tela */
+    margin: auto;
+}
+
+/* ===== PAINEL DE EDIÇÃO ===== */
 
 #editBox {
     background-color: #faebd7;
     padding: 30px;
     border-radius: 10px;
-    width: 92%;
-    max-width: 500px;
     position: relative;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    max-height: 85vh;
     overflow-y: auto;
-    top: 0%;
+
+    /* Tamanho fixo — não estica mais */
+    width: 480px;
+    max-width: 100%;
+    max-height: 85vh;
+
+    /* Remove flex: 1 que causava o problema */
+    flex-shrink: 0;
 }
 
 #editBox h3 {
@@ -525,25 +554,30 @@ main h2 {
     color: red;
 }
 
-/*  ================================  */
-/*    PAINEL FLUTUANTE DE NOTAS       */
-/*  ================================  */
+/* ===== PAINEL DE NOTAS ===== */
 
 #notasFloat {
-    position: fixed;
-    top: 50%;
-    left: 10px;
-    transform: translateY(-50%);
-    width: 260px;
-    max-height: 80vh;
+    /* Tamanho fixo */
+    width: 250px;
+    flex-shrink: 0;
+    max-height: 85vh;
+
     background-color: #f0e4d0;
     border: 2px solid #c7baaa;
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    z-index: 1250;
-    display: flex;
+
+    /* Layout interno */
     flex-direction: column;
     overflow: hidden;
+
+    /* Posição normal no fluxo */
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+
+    /* display controlado pelo JS (none ou flex) */
 }
 
 #notasFloat .notas-header {
@@ -566,7 +600,7 @@ main h2 {
     flex: 1;
 }
 
-/* Scrollbar */
+/* Scrollbar do painel de notas */
 #notasFloat .notas-corpo::-webkit-scrollbar {
     width: 5px;
 }
@@ -580,7 +614,7 @@ main h2 {
     border-radius: 3px;
 }
 
-/*     SEÇÕES DAS NOTAS     */
+/* ===== SEÇÕES DAS NOTAS ===== */
 
 .nota-secao {
     margin-bottom: 14px;
@@ -650,40 +684,58 @@ main h2 {
     border-radius: 2px;
 }
 
-/*    RESPONSIVO - NOTAS NO CELULAR    */
+/*  ================================  */
+/*    RESPONSIVO - EDIÇÃO + NOTAS     */
+/*  ================================  */
 
+/* Tablet: empilha vertical */
 @media (max-width: 800px) {
+    #editOverlay {
+        padding: 15px 0;
+    }
+
+    .edit-container {
+        flex-direction: column;
+        align-items: center;
+        width: 92%;
+        max-width: 500px;
+    }
+
+    /* Notas vai ABAIXO do editBox no tablet/mobile */
     #notasFloat {
-        left: 10px;
-        right: 10px;
-        width: auto;
-        top: auto;
-        bottom: 10px;
-        transform: none;
-        max-height: 30vh;
-        border-radius: 8px;
+        width: 100%;
+        max-height: 220px;
+        order: 2;
+    }
+
+    #editBox {
+        width: 100%;
+        max-height: 60vh;
+        order: 1;
+        flex-shrink: unset;
     }
 }
 
+/* Mobile */
 @media (max-width: 600px) {
+    .edit-container {
+        width: 96%;
+        gap: 10px;
+    }
+
     #notasFloat {
-        max-height: 25vh;
+        max-height: 180px;
+    }
+
+    #editBox {
+        padding: 20px;
+        max-height: 55vh;
     }
 
     .nota-item {
         flex-direction: column;
         align-items: flex-start;
         gap: 2px;
-    }
-
-    #editOverlay {
-        align-items: flex-start;
-        padding-top: 20px;
-    }
-
-    #editBox {
-        padding: 20px;
-        max-height: 85vh;
     }
 }
 

@@ -5,6 +5,7 @@
 function abrirModal(elementoClicado) {
     const blocoDoLivro = elementoClicado.closest('.book');
     const sinopseDiv = blocoDoLivro.querySelector('.sinopse');
+
     if (!sinopseDiv) return;
 
     document.getElementById("textoDoModal").innerHTML = sinopseDiv.innerHTML;
@@ -44,32 +45,17 @@ function fecharLoginFora(event) {
 }
 
 // ========================
-// MODAL DE EDIÇÃO
+// MODAL DE EDIÇÃO + NOTAS
 // ========================
 
 function fecharEditBox() {
     document.getElementById("editOverlay").style.display = "none";
-    document.getElementById("editMsg").style.display = "none";
-}
-
-function fecharEditFora(event) {
-    if (event.target === document.getElementById("editOverlay")) {
-        fecharEditBox();
-    }
-}
-
-// ========================
-// MODAL DE EDIÇÃO
-// ========================
-
-function fecharEditBox() {
-    document.getElementById("editOverlay").style.display = "none";
-    document.getElementById("editMsg").style.display = "none";
-    // Esconde o painel de notas junto
     document.getElementById("notasFloat").style.display = "none";
+    document.getElementById("editMsg").style.display = "none";
 }
 
 function fecharEditFora(event) {
+    // Fecha só se clicar no fundo escuro (overlay)
     if (event.target === document.getElementById("editOverlay")) {
         fecharEditBox();
     }
@@ -91,7 +77,7 @@ function fecharFinalizarFora(event) {
 }
 
 // ========================
-// MODAL DESFAZER
+// MODAL DESFAZER SEMANA
 // ========================
 
 function fecharDesfazerBox() {
@@ -106,14 +92,18 @@ function fecharDesfazerFora(event) {
 }
 
 // ========================
-// VOLTAR PARA ATUAL
+// VOLTAR PARA SEMANA ATUAL
 // ========================
 
-// Essa função é definida aqui mas será sobrescrita pelo script.js
-// para ter acesso ao carregarLivros()
 function voltarParaAtual() {
-    // será sobrescrita em script.js
+    // Esta função será chamada pelo script.js
+    // Dispara um evento customizado
+    window.dispatchEvent(new CustomEvent('voltarAtual'));
 }
+
+// ========================
+// IMPRIMIR SINOPSES
+// ========================
 
 function imprimirSinopses() {
     const container = document.getElementById("printContent");
@@ -130,17 +120,11 @@ function imprimirSinopses() {
         const titulo = livro.querySelector("h5").textContent;
         const sinopseDiv = livro.querySelector(".sinopse");
 
-        // Pega TODO o HTML interno da sinopse, mantendo formatação
         let sinopseHTML = "";
         if (sinopseDiv) {
-            // Clona para não modificar o original
             const clone = sinopseDiv.cloneNode(true);
-
-            // Remove o h3 do clone (já vamos usar o título separado)
             const h3 = clone.querySelector("h3");
             if (h3) h3.remove();
-
-            // Pega o HTML com todas as tags de formatação
             sinopseHTML = clone.innerHTML;
         }
 

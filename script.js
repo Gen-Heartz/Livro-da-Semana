@@ -324,10 +324,11 @@ function abrirEdicaoLivro(livroId) {
     });
 
     preencherFormularioEdicao(livro);
+
     document.getElementById("editOverlay").style.display = "flex";
     document.getElementById("editMsg").style.display = "none";
-    
-    // Mostra o painel flutuante de notas
+
+    // CORRIGIDO: direto, sem depender do functions.js
     document.getElementById("notasFloat").style.display = "flex";
 }
 
