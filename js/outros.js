@@ -1,4 +1,4 @@
-console.log("🚀 OUTROS.JS CARREGADO!");
+console.log("outros.js carregado.");
 
 import { auth, db } from "../js/firebase.js";
 
@@ -54,10 +54,31 @@ const GENEROS = [
 // ========================
 
 let isAdmin = false;
-
-// Guarda todos os livros por género
-// { infantil: [...], fantastico: [...], ... }
 let todosDados = {};
+
+// ========================
+// UTILITÁRIOS
+// ========================
+
+function escapeHTML(str) {
+    if (str === null || str === undefined) return "";
+    return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+}
+
+function textoParaHTML(texto) {
+    if (!texto) return "";
+    return texto
+        .split(/\n\s*\n/)
+        .map(p => p.trim())
+        .filter(p => p.length > 0)
+        .map(p => `<p>${p}</p>`)
+        .join("\n");
+}
 
 // ========================
 // CARREGAR LIVROS DE TODOS OS GÉNEROS
@@ -87,10 +108,9 @@ async function carregarGenero(genero) {
         });
 
         renderizarGenero(genero);
-
     } catch (erro) {
-        console.error(`❌ Erro ao carregar ${genero.id}:`, erro);
-        container.innerHTML = `<p style="color:red; text-align:center;">Erro ao carregar.</p>`;
+        console.error(`Erro ao carregar ${genero.id}:`, erro);
+        container.innerHTML = `<p class="msg-erro" style="text-align:center;">Erro ao carregar.</p>`;
     }
 }
 
@@ -103,7 +123,7 @@ function renderizarGenero(genero) {
     const livros = todosDados[genero.id] || [];
 
     if (livros.length === 0) {
-        container.innerHTML = `<p style="text-align:center; color:#888;">Nenhum livro cadastrado.</p>`;
+        container.innerHTML = `<p class="estado-vazio">Nenhum livro cadastrado.</p>`;
         return;
     }
 
@@ -111,29 +131,41 @@ function renderizarGenero(genero) {
 
     livros.forEach((livro) => {
         const sinopseHTML = textoParaHTML(livro.sinopse || "");
+        const tituloSeguro = escapeHTML(livro.titulo || "Sem título");
+        const imagemSegura = escapeHTML(livro.imagem || "");
         const bookDiv = document.createElement("div");
         bookDiv.classList.add("book");
 
+        const capaHTML = livro.imagem
+            ? `<img src="${imagemSegura}"
+                   alt="Capa do livro ${tituloSeguro}"
+                   onclick="abrirModal(this)"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+               <div class="book-sem-capa" style="display:none;" onclick="abrirModal(this)">Sem capa</div>`
+            : `<div class="book-sem-capa" onclick="abrirModal(this)">Sem capa</div>`;
+
         bookDiv.innerHTML = `
-            <button class="btn-editar-livro"
+            <button type="button"
+                    class="btn-editar-livro"
                     title="Editar livro"
-                    data-id="${livro.id}"
-                    data-genero="${genero.id}"
-                    style="display: ${isAdmin ? 'block' : 'none'};">
-                ✏️
+                    data-id="${escapeHTML(livro.id)}"
+                    data-genero="${escapeHTML(genero.id)}"
+                    style="display: ${isAdmin ? 'inline-block' : 'none'};">
+                Editar
             </button>
-            <img src="${livro.imagem}"
-                 alt="Capa do livro ${livro.titulo}"
-                 onclick="abrirModal(this)">
-            <h5>${livro.titulo}</h5>
+            <div class="book-capa-wrapper">
+                ${capaHTML}
+            </div>
+            <h5>${tituloSeguro}</h5>
             <div class="sinopse" style="display: none;">
-                <h3>${livro.titulo}</h3>
+                <h3>${tituloSeguro}</h3>
                 ${sinopseHTML}
             </div>
         `;
 
         const btnEditar = bookDiv.querySelector(".btn-editar-livro");
-        btnEditar.addEventListener("click", () => {
+        btnEditar.addEventListener("click", (e) => {
+            e.stopPropagation();
             abrirEdicaoLivroOutros(genero.id, livro.id);
         });
 
@@ -142,35 +174,17 @@ function renderizarGenero(genero) {
 }
 
 // ========================
-// TEXTO → HTML
-// ========================
-
-function textoParaHTML(texto) {
-    if (!texto) return "";
-    return texto
-        .split(/\n\s*\n/)
-        .map(p => p.trim())
-        .filter(p => p.length > 0)
-        .map(p => `<p>${p}</p>`)
-        .join("\n");
-}
-
-// ========================
 // EDIÇÃO DE LIVROS
 // ========================
 
 function abrirEdicaoLivroOutros(generoId, livroId) {
-    // Seleciona o género no dropdown
     const selectGenero = document.getElementById("editGenero");
     selectGenero.value = generoId;
 
-    // Preenche o select de livros desse género
     atualizarSelectLivros(generoId);
 
-    // Seleciona o livro
     document.getElementById("editSelect").value = livroId;
 
-    // Preenche os campos
     const livro = (todosDados[generoId] || []).find(l => l.id === livroId);
     if (livro) {
         preencherFormularioEdicao(livro);
@@ -200,7 +214,6 @@ function preencherFormularioEdicao(livro) {
     document.getElementById("editSinopse").value = livro.sinopse || "";
 }
 
-// Quando muda o género, atualiza os livros
 document.getElementById("editGenero").addEventListener("change", (e) => {
     const generoId = e.target.value;
     if (generoId) {
@@ -209,13 +222,11 @@ document.getElementById("editGenero").addEventListener("change", (e) => {
         document.getElementById("editSelect").innerHTML =
             '<option value="">-- Selecione o livro --</option>';
     }
-    // Limpa campos
     document.getElementById("editImagem").value = "";
     document.getElementById("editTitulo").value = "";
     document.getElementById("editSinopse").value = "";
 });
 
-// Quando muda o livro, preenche os campos
 document.getElementById("editSelect").addEventListener("change", (e) => {
     const generoId = document.getElementById("editGenero").value;
     const livroId = e.target.value;
@@ -264,7 +275,6 @@ document.getElementById("salvarEdicao").addEventListener("click", async () => {
     btnSalvar.textContent = "Salvando...";
 
     try {
-        // Encontra a coleção correspondente
         const genero = GENEROS.find(g => g.id === generoId);
         const livroAtual = (todosDados[generoId] || []).find(l => l.id === livroId);
 
@@ -275,23 +285,19 @@ document.getElementById("salvarEdicao").addEventListener("click", async () => {
             ordem: livroAtual ? livroAtual.ordem : 1
         });
 
-        msgEl.textContent = "✅ Livro salvo com sucesso!";
+        msgEl.textContent = "Livro salvo com sucesso.";
         msgEl.className = "sucesso";
         msgEl.style.display = "block";
 
-        // Recarrega só esse género
         await carregarGenero(genero);
 
-        // Atualiza o select
         atualizarSelectLivros(generoId);
         document.getElementById("editSelect").value = livroId;
-
     } catch (erro) {
-        console.error("❌ Erro ao salvar:", erro);
-        msgEl.textContent = "❌ Erro ao salvar. Tente novamente.";
+        console.error("Erro ao salvar:", erro);
+        msgEl.textContent = "Erro ao salvar. Tente novamente.";
         msgEl.className = "erro";
         msgEl.style.display = "block";
-
     } finally {
         btnSalvar.disabled = false;
         btnSalvar.textContent = "Salvar Alterações";
@@ -357,23 +363,20 @@ document.getElementById("logoutBtn").addEventListener("click", async () => {
 
 onAuthStateChanged(auth, (user) => {
     const adminPanel = document.getElementById("adminPanel");
-    const loginBtn = document.getElementById("loginBtn");
+    const loginNav = document.getElementById("loginNav");
 
     if (user) {
-        console.log("🔓 ADM logado:", user.email);
         isAdmin = true;
         adminPanel.style.display = "inline-block";
-        loginBtn.style.display = "none";
+        loginNav.style.display = "none";
     } else {
-        console.log("🔒 Não logado");
         isAdmin = false;
         adminPanel.style.display = "none";
-        loginBtn.style.display = "inline-block";
+        loginNav.style.display = "inline-block";
     }
 
-    // Atualiza botões de editar
     document.querySelectorAll(".btn-editar-livro").forEach(btn => {
-        btn.style.display = isAdmin ? "block" : "none";
+        btn.style.display = isAdmin ? "inline-block" : "none";
     });
 });
 
@@ -382,9 +385,7 @@ onAuthStateChanged(auth, (user) => {
 // ========================
 
 async function inicializar() {
-    console.log("🏁 Inicializando página Outros...");
     await carregarTodosGeneros();
-    console.log("✅ Todos os géneros carregados!");
 }
 
 inicializar();

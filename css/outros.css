@@ -3,65 +3,57 @@
 /*    PÁGINA OUTROS         */
 /* ======================== */
 
-/* Link de navegação no header */
-.nav-link {
-    color: #000000;
-    text-decoration: none;
-}
-
-/* ======================== */
-/*  GRID DE GÉNEROS (2x2)   */
-/* ======================== */
-
 /* O main vira um grid de 2 colunas para os géneros */
 main {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 15px;
+    gap: 16px;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
 }
 
 /* Seções de género */
 .genero-secao {
-    background-color: #faebd7;
+    background-color: var(--cor-papel);
+    border: 1px solid var(--cor-borda);
     border-radius: 10px;
-    padding: 15px;
+    padding: 18px;
+    box-shadow: 0 6px 24px rgba(20, 15, 10, 0.08);
 }
 
 .genero-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 10px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #c7baaa;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--cor-borda);
 }
 
 .genero-header h2 {
     margin: 0;
-    font-size: 1.1em;
-    color: #5a4630;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--cor-marrom-escuro);
 }
 
 /* Livros dentro de cada género: 2 por linha */
 .genero-secao .books-container {
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
-}
-
-/* Livros menores */
-.genero-secao .book img {
-    max-height: 280px;
-    object-fit: cover;
+    gap: 12px;
 }
 
 .genero-secao .book h5 {
-    font-size: 12px;
+    font-size: 13px;
 }
 
 /* Se o último género ficar sozinho (ímpar),
    ocupa as 2 colunas e centraliza */
 .genero-secao:last-child:nth-child(odd) {
     grid-column: 1 / -1;
+    width: 100%;
     max-width: 50%;
     justify-self: center;
 }
@@ -70,61 +62,53 @@ main {
 #editGenero {
     width: 100%;
     padding: 10px 12px;
-    border: 1px solid #c7baaa;
-    border-radius: 5px;
+    background-color: var(--cor-papel-claro);
+    border: 1px solid var(--cor-areia);
+    border-radius: 6px;
     font-size: 14px;
+    color: var(--cor-texto);
     outline: none;
     margin-bottom: 5px;
-    transition: border-color 0.3s;
+    transition: border-color 0.2s ease;
     font-family: inherit;
 }
 
 #editGenero:focus {
-    border-color: #8b7355;
+    border-color: var(--cor-marrom);
 }
 
 /* ======================== */
 /*      RESPONSIVO          */
 /* ======================== */
 
-/* Tablet */
 @media (max-width: 800px) {
     main {
         grid-template-columns: 1fr 1fr;
-        gap: 10px;
+        gap: 12px;
     }
 
     .genero-header h2 {
-        font-size: 1em;
-    }
-
-    .genero-secao .book img {
-        max-height: 220px;
+        font-size: 1.05rem;
     }
 }
 
-/* Mobile */
 @media (max-width: 600px) {
     main {
         grid-template-columns: 1fr;
-        gap: 10px;
+        gap: 12px;
     }
 
     .genero-secao {
-        padding: 12px;
+        padding: 14px;
     }
 
     .genero-header h2 {
-        font-size: 1em;
+        font-size: 1rem;
     }
 
     .genero-secao .books-container {
         grid-template-columns: 1fr 1fr;
-        gap: 8px;
-    }
-
-    .genero-secao .book img {
-        max-height: none;
+        gap: 10px;
     }
 
     .genero-secao:last-child:nth-child(odd) {
@@ -144,6 +128,7 @@ main {
     .genero-secao {
         page-break-inside: avoid;
         margin-bottom: 10px;
+        box-shadow: none;
     }
 
     .genero-header {
