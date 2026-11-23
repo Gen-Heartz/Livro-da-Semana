@@ -6,94 +6,137 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Livro da Semana</title>
     <link rel="icon" type="image/x-icon" href="data/favicon_io (1)/favicon-32x32.png">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=5">
 </head>
 
 <body>
     <header id="menu">
-        <h1>Livros da Semana</h1>
+        <div class="header-topo">
+            <h1>Livros da Semana</h1>
+        </div>
 
-        <nav>
-            <button id="semanasNav">Semanas</button>
-            <div class="dropdown" id="semanasDropdown">
-                <p class="dropdown-carregando">Carregando...</p>
-            </div>
-        </nav>
+        <div class="header-nav">
+            <nav class="nav-dropdown-wrapper" id="semanasNavWrapper">
+                <button type="button" id="semanasNav" class="nav-btn">Semanas</button>
+                <div class="dropdown" id="semanasDropdown">
+                    <p class="dropdown-carregando">Carregando...</p>
+                </div>
+            </nav>
 
-        <nav>
-            <button id="btnImprimir" onclick="imprimirSinopses()">
-                Imprimir Sinopses
-            </button>
-        </nav>
+            <nav>
+                <button type="button" id="btnImprimir" class="nav-btn" onclick="imprimirSinopses()">
+                    Imprimir Sinopses
+                </button>
+            </nav>
 
-        <nav>
-            <button>
-                <a href="pages/outros.html" class="nav-link" style="text-decoration:none; color:#333; font-size:14px;">
-                    Outros
-                </a>
-            </button>
-        </nav>
+            <nav>
+                <a href="pages/outros.html" class="nav-btn nav-link">Outros</a>
+            </nav>
 
-        <nav>
-            <button id="loginBtn" onclick="toggleLoginBox()">
-                Login Admin
-            </button>
-        </nav>
+            <nav id="loginNav">
+                <button type="button" id="loginBtn" class="nav-btn" onclick="toggleLoginBox()">
+                    Login Admin
+                </button>
+            </nav>
 
-        <!-- Botão ADM - só aparece para admin -->
-        <nav>
-            <div id="adminPanel" style="display:none;">
-                <button id="logoutBtn">Sair</button>
-            </div>
-        </nav>
-        <!-- Botão ADM - só aparece para admin -->
-        <nav id="finalizarNav" style="display:none;">
-            <button id="finalizarBtn">Finalizar Semana</button>
-        </nav>
-        <!-- Botão ADM - só aparece para admin -->
-        <nav id="desfazerNav" style="display:none;">
-            <button id="desfazerBtn">Desfazer</button>
-        </nav>
+            <!-- Controles ADM - só aparecem para admin -->
+            <nav id="proximaNav" style="display:none;">
+                <button type="button" id="proximaBtn" class="nav-btn">Próxima Semana</button>
+            </nav>
+
+            <nav id="finalizarNav" style="display:none;">
+                <button type="button" id="finalizarBtn" class="nav-btn nav-btn-accent">Finalizar Semana</button>
+            </nav>
+
+            <nav id="finalizarAnoNav" style="display:none;">
+                <button type="button" id="finalizarAnoBtn" class="nav-btn nav-btn-accent">Finalizar Ano</button>
+            </nav>
+
+            <nav id="desfazerNav" style="display:none;">
+                <button type="button" id="desfazerBtn" class="nav-btn nav-btn-danger">Desfazer</button>
+            </nav>
+
+            <nav id="desfazerAnoNav" style="display:none;">
+                <button type="button" id="desfazerAnoBtn" class="nav-btn nav-btn-danger">Desfazer Ano</button>
+            </nav>
+
+            <nav id="restaurarSemanaNav" style="display:none;">
+                <button type="button" id="restaurarSemanaBtn" class="nav-btn">Restaurar Semana</button>
+            </nav>
+
+            <nav id="adminPanel" style="display:none;">
+                <button type="button" id="logoutBtn" class="nav-btn">Sair</button>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <h2 id="tituloSemana">Semana ...</h2>
-        <p id="subtituloSemana">Conheça os livros da semana!</p>
+        <div class="semana-cabecalho">
+            <div class="semana-titulo-linha">
+                <h2 id="tituloSemana">Semana ...</h2>
+                <button type="button" id="editarSemanaBtn" class="btn-editar-semana" style="display:none;">
+                    Editar número
+                </button>
+                <button type="button" id="removerSemanaBtn" class="btn-remover-semana" style="display:none;">
+                    Remover semana
+                </button>
+            </div>
+            <p id="subtituloSemana">Conheça os livros da semana.</p>
+            <p id="proximaResumoAdmin" class="proxima-resumo-admin" style="display:none;"></p>
+        </div>
 
-        <!-- Botão voltar -->
-        <button id="voltarAtual" style="display:none;" onclick="voltarParaAtual()">
-            ← Voltar para semana atual
+        <button type="button" id="voltarAtual" style="display:none;" onclick="voltarParaAtual()">
+            Voltar para semana atual
         </button>
 
+        <!-- Painel de controle da Próxima Semana (só admin no modo Próxima Semana) -->
+        <section id="proximaPainel" class="proxima-painel" style="display:none;">
+            <div class="proxima-painel-info">
+                <h3>Agendamento da Próxima Semana</h3>
+                <p>Defina quando esta semana passará a ser a semana atual automaticamente, ou ative-a manualmente quando desejar.</p>
+            </div>
+            <div class="proxima-painel-controles">
+                <div class="proxima-campo">
+                    <label for="proximaDataHora">Ativar automaticamente em:</label>
+                    <input type="datetime-local" id="proximaDataHora">
+                </div>
+                <div class="proxima-acoes">
+                    <button type="button" id="salvarAgendamentoBtn" class="btn-primario">Salvar agendamento</button>
+                    <button type="button" id="limparAgendamentoBtn" class="btn-secundario">Limpar data</button>
+                    <button type="button" id="ativarProximaAgoraBtn" class="btn-primario">Ativar agora</button>
+                    <button type="button" id="descartarProximaBtn" class="btn-perigo">Descartar</button>
+                </div>
+            </div>
+            <p id="proximaMsg" style="display:none;"></p>
+        </section>
+
         <div class="books-container" id="booksContainer">
-            <p style="text-align:center; color:#888;">Carregando livros...</p>
+            <p class="estado-vazio">Carregando livros...</p>
         </div>
     </main>
 
     <!-- Modal para exibir sinopse -->
     <div id="meuModal" class="modal" onclick="fecharModalFora(event)">
         <div class="modal-corpo">
-            <span class="fechar" onclick="fecharModal()">&times;</span>
+            <button type="button" class="fechar" aria-label="Fechar" onclick="fecharModal()">&times;</button>
             <div id="textoDoModal"></div>
         </div>
     </div>
 
     <!-- Modal de Login -->
     <div id="loginOverlay" class="modal" onclick="fecharLoginFora(event)">
-        <div id="loginBox">
-            <span class="fechar" onclick="fecharLoginBox()">&times;</span>
+        <div id="loginBox" class="modal-box">
+            <button type="button" class="fechar" aria-label="Fechar" onclick="fecharLoginBox()">&times;</button>
             <h3>Login Administrador</h3>
-            <input type="email" id="email" placeholder="Email">
-            <input type="password" id="senha" placeholder="Senha">
-            <button id="entrar">Entrar</button>
-            <p id="loginErro" style="color: red; display: none;">Email ou senha incorretos.</p>
+            <input type="email" id="email" placeholder="Email" autocomplete="email">
+            <input type="password" id="senha" placeholder="Senha" autocomplete="current-password">
+            <button type="button" id="entrar" class="btn-primario">Entrar</button>
+            <p id="loginErro" class="msg-erro" style="display: none;">Email ou senha incorretos.</p>
         </div>
     </div>
 
     <!-- Modal de Edição de Livro -->
     <div id="editOverlay" class="modal" onclick="fecharEditFora(event)">
-
-        <!-- Container que agrupa os dois lado a lado -->
         <div class="edit-container">
 
             <!-- GUIA DE FORMATAÇÃO (esquerda) -->
@@ -159,7 +202,7 @@
                         </div>
                         <div class="nota-item">
                             <code>&lt;hr&gt;</code>
-                            <span class="nota-resultado">Linha separadora ───</span>
+                            <span class="nota-resultado">Linha separadora</span>
                         </div>
                     </div>
 
@@ -190,8 +233,8 @@
 
             <!-- PAINEL DE EDIÇÃO (direita) -->
             <div id="editBox">
-                <span class="fechar" onclick="fecharEditBox()">&times;</span>
-                <h3>Editar Livro</h3>
+                <button type="button" class="fechar" aria-label="Fechar" onclick="fecharEditBox()">&times;</button>
+                <h3 id="editBoxTitulo">Editar Livro</h3>
 
                 <label for="editSelect">Escolher livro:</label>
                 <select id="editSelect">
@@ -208,54 +251,162 @@
                 <textarea id="editSinopse" rows="8"
                     placeholder="Escreva a sinopse aqui. Use linhas em branco para separar parágrafos."></textarea>
 
-                <p class="edit-dica">* Separe parágrafos com uma linha em branco. *</p>
+                <p class="edit-dica">Separe parágrafos com uma linha em branco.</p>
 
-                <button id="salvarEdicao">Salvar Alterações</button>
+                <button type="button" id="salvarEdicao" class="btn-primario">Salvar Alterações</button>
                 <p id="editMsg" style="display: none;"></p>
             </div>
 
         </div>
     </div>
 
+    <!-- Modal de Edição do Número da Semana -->
+    <div id="editarSemanaOverlay" class="modal" onclick="fecharEditarSemanaFora(event)">
+        <div id="editarSemanaBox" class="modal-box">
+            <button type="button" class="fechar" aria-label="Fechar" onclick="fecharEditarSemanaBox()">&times;</button>
+            <h3>Editar Número da Semana</h3>
+            <p class="modal-descricao">Defina o número da semana atual exibida no site.</p>
+
+            <label for="inputNumeroSemana">Número da semana:</label>
+            <input type="number" id="inputNumeroSemana" min="1" step="1" placeholder="Ex: 1">
+
+            <div class="modal-botoes">
+                <button type="button" id="cancelarEditarSemana" class="btn-secundario" onclick="fecharEditarSemanaBox()">Cancelar</button>
+                <button type="button" id="confirmarEditarSemana" class="btn-primario">Salvar</button>
+            </div>
+            <p id="editarSemanaMsg" style="display:none;"></p>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmação para Remover Semana do Histórico -->
+    <div id="removerSemanaOverlay" class="modal" onclick="fecharRemoverSemanaFora(event)">
+        <div id="removerSemanaBox" class="modal-box">
+            <button type="button" class="fechar" aria-label="Fechar" onclick="fecharRemoverSemanaBox()">&times;</button>
+            <h3 class="titulo-perigo">Remover Semana</h3>
+            <p id="removerSemanaTexto" class="modal-descricao"></p>
+            <p id="removerSemanaAviso" class="desfazer-aviso"></p>
+            <div class="modal-botoes">
+                <button type="button" id="cancelarRemoverSemana" class="btn-secundario" onclick="fecharRemoverSemanaBox()">Cancelar</button>
+                <button type="button" id="confirmarRemoverSemana" class="btn-perigo">Remover e Reajustar</button>
+            </div>
+            <p id="removerSemanaMsg" style="display:none;"></p>
+        </div>
+    </div>
+
     <!-- Modal de Confirmação para Finalizar Semana -->
     <div id="finalizarOverlay" class="modal" onclick="fecharFinalizarFora(event)">
-        <div id="finalizarBox">
-            <span class="fechar" onclick="fecharFinalizarBox()">&times;</span>
-            <h3>⚠ Finalizar Semana</h3>
+        <div id="finalizarBox" class="modal-box">
+            <button type="button" class="fechar" aria-label="Fechar" onclick="fecharFinalizarBox()">&times;</button>
+            <h3>Finalizar Semana</h3>
             <p id="finalizarTexto">
-                Tem certeza que deseja finalizar a <strong>Semana 23</strong>?
+                Tem certeza que deseja finalizar a <strong>Semana ...</strong>?
             </p>
-            <p class="finalizar-aviso">
+            <p class="modal-aviso">
                 Os livros atuais serão salvos no histórico e a semana avançará.
-                Esta ação só é desfeita ao clicar no botão "Desfazer".
+                Esta ação só pode ser revertida pelo botão "Desfazer".
             </p>
-            <div class="finalizar-botoes">
-                <button id="cancelarFinalizar" onclick="fecharFinalizarBox()">Cancelar</button>
-                <button id="confirmarFinalizar">Confirmar</button>
+            <label class="checkbox-linha" id="usarProximaWrapper" for="usarProximaAoFinalizar" style="display:none;">
+                <input type="checkbox" id="usarProximaAoFinalizar" checked>
+                <span>Usar os livros preparados em "Próxima Semana"</span>
+            </label>
+            <div class="modal-botoes">
+                <button type="button" id="cancelarFinalizar" class="btn-secundario" onclick="fecharFinalizarBox()">Cancelar</button>
+                <button type="button" id="confirmarFinalizar" class="btn-perigo">Confirmar</button>
             </div>
             <p id="finalizarMsg" style="display:none;"></p>
         </div>
     </div>
 
+    <!-- Modal de Confirmação para Finalizar Ano -->
+    <div id="finalizarAnoOverlay" class="modal" onclick="fecharFinalizarAnoFora(event)">
+        <div id="finalizarAnoBox" class="modal-box">
+            <button type="button" class="fechar" aria-label="Fechar" onclick="fecharFinalizarAnoBox()">&times;</button>
+            <h3>Finalizar Ano</h3>
+            <p class="modal-descricao">
+                As semanas finalizadas da lista serão agrupadas dentro de uma pasta com o nome do ano informado.
+            </p>
+
+            <label for="inputNomeAno">Nome da pasta (ano):</label>
+            <input type="text" id="inputNomeAno" maxlength="24" placeholder="Ex: 2026">
+
+            <div class="radio-grupo">
+                <span class="radio-grupo-titulo" id="modoAnoTitulo">O que fazer com a semana atual?</span>
+                <label class="radio-linha" for="modoAnoArquivar">
+                    <input type="radio" name="modoFinalizarAno" id="modoAnoArquivar" value="arquivar" checked>
+                    <span id="modoAnoArquivarLabel">Arquivar a semana atual na pasta do ano e criar a Semana 1 em branco</span>
+                </label>
+                <label class="radio-linha" for="modoAnoManter">
+                    <input type="radio" name="modoFinalizarAno" id="modoAnoManter" value="manter">
+                    <span id="modoAnoManterLabel">Manter os livros atuais e mudar apenas o número para Semana 1</span>
+                </label>
+            </div>
+
+            <p id="finalizarAnoResumo" class="modal-aviso"></p>
+
+            <div class="modal-botoes">
+                <button type="button" id="cancelarFinalizarAno" class="btn-secundario" onclick="fecharFinalizarAnoBox()">Cancelar</button>
+                <button type="button" id="confirmarFinalizarAno" class="btn-primario">Arquivar Ano</button>
+            </div>
+            <p id="finalizarAnoMsg" style="display:none;"></p>
+        </div>
+    </div>
+
     <!-- Modal de Confirmação para Desfazer Semana -->
     <div id="desfazerOverlay" class="modal" onclick="fecharDesfazerFora(event)">
-        <div id="desfazerBox">
-            <span class="fechar" onclick="fecharDesfazerBox()">&times;</span>
-            <h3>⟲ Desfazer Finalização</h3>
+        <div id="desfazerBox" class="modal-box">
+            <button type="button" class="fechar" aria-label="Fechar" onclick="fecharDesfazerBox()">&times;</button>
+            <h3 class="titulo-perigo">Desfazer Finalização</h3>
             <p id="desfazerTexto">
                 Isso vai restaurar a semana anterior e apagar o avanço.
             </p>
             <p class="desfazer-aviso">
-                * Os livros da semana anterior serão restaurados.
+                Os livros da semana anterior serão restaurados. Esta ação é irreversível e só deve ser usada se a semana atual foi finalizada por engano.
             </p>
-            <p class="desfazer-aviso">
-                * Esta ação é irreversível e só deve ser usada se a semana atual foi finalizada por engano.
-            </p>
-            <div class="desfazer-botoes">
-                <button id="cancelarDesfazer" onclick="fecharDesfazerBox()">Cancelar</button>
-                <button id="confirmarDesfazer">Desfazer</button>
+            <div class="modal-botoes">
+                <button type="button" id="cancelarDesfazer" class="btn-secundario" onclick="fecharDesfazerBox()">Cancelar</button>
+                <button type="button" id="confirmarDesfazer" class="btn-perigo">Desfazer</button>
             </div>
             <p id="desfazerMsg" style="display:none;"></p>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmação para Desfazer Ano -->
+    <div id="desfazerAnoOverlay" class="modal" onclick="fecharDesfazerAnoFora(event)">
+        <div id="desfazerAnoBox" class="modal-box">
+            <button type="button" class="fechar" aria-label="Fechar" onclick="fecharDesfazerAnoBox()">&times;</button>
+            <h3 class="titulo-perigo">Desfazer Finalização do Ano</h3>
+            <p class="modal-descricao">
+                As semanas dentro da pasta selecionada voltarão para a lista principal de semanas.
+            </p>
+
+            <label for="selectAnoDesfazer">Pasta do ano:</label>
+            <select id="selectAnoDesfazer"></select>
+
+            <label class="checkbox-linha" id="restaurarSemanaAnoWrapper" for="restaurarSemanaAnoCheck" style="display:none;">
+                <input type="checkbox" id="restaurarSemanaAnoCheck" checked>
+                <span id="restaurarSemanaAnoLabel">Restaurar número da semana atual</span>
+            </label>
+
+            <p id="desfazerAnoResumo" class="desfazer-aviso"></p>
+
+            <div class="modal-botoes">
+                <button type="button" id="cancelarDesfazerAno" class="btn-secundario" onclick="fecharDesfazerAnoBox()">Cancelar</button>
+                <button type="button" id="confirmarDesfazerAno" class="btn-perigo">Desfazer Ano</button>
+            </div>
+            <p id="desfazerAnoMsg" style="display:none;"></p>
+        </div>
+    </div>
+
+    <!-- Modal de Restauração de Semanas Removidas -->
+    <div id="restaurarSemanaOverlay" class="modal" onclick="fecharRestaurarSemanaFora(event)">
+        <div id="restaurarSemanaBox" class="modal-box modal-box-largo">
+            <button type="button" class="fechar" aria-label="Fechar" onclick="fecharRestaurarSemanaBox()">&times;</button>
+            <h3>Restaurar Semana Removida</h3>
+            <p class="modal-descricao">
+                Ao restaurar uma semana, ela volta para sua posição original e as semanas seguintes são reajustadas para cima.
+            </p>
+            <div id="listaLixeiraSemanas" class="lixeira-lista"></div>
+            <p id="restaurarSemanaMsg" style="display:none;"></p>
         </div>
     </div>
 
@@ -263,12 +414,12 @@
         <p>&copy; Todos os direitos reservados. | MIT | Heartz Company.</p>
     </footer>
 
-    <script src="js/functions.js"></script>
-    <script type="module" src="script.js"></script>
-</body>
+    <div id="areaPrint">
+        <div id="printContent"></div>
+    </div>
 
-<div id="areaPrint">
-    <div id="printContent"></div>
-</div>
+    <script src="js/functions.js?v=5"></script>
+    <script type="module" src="script.js?v=5"></script>
+</body>
 
 </html>
