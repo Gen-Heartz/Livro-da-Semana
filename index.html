@@ -93,7 +93,8 @@
         <section id="proximaPainel" class="proxima-painel" style="display:none;">
             <div class="proxima-painel-info">
                 <h3>Agendamento da Próxima Semana</h3>
-                <p>Defina quando esta semana passará a ser a semana atual automaticamente, ou ative-a manualmente quando desejar.</p>
+                <p>Defina quando esta semana passará a ser a semana atual automaticamente, ou ative-a manualmente quando
+                    desejar.</p>
             </div>
             <div class="proxima-painel-controles">
                 <div class="proxima-campo">
@@ -271,7 +272,8 @@
             <input type="number" id="inputNumeroSemana" min="1" step="1" placeholder="Ex: 1">
 
             <div class="modal-botoes">
-                <button type="button" id="cancelarEditarSemana" class="btn-secundario" onclick="fecharEditarSemanaBox()">Cancelar</button>
+                <button type="button" id="cancelarEditarSemana" class="btn-secundario"
+                    onclick="fecharEditarSemanaBox()">Cancelar</button>
                 <button type="button" id="confirmarEditarSemana" class="btn-primario">Salvar</button>
             </div>
             <p id="editarSemanaMsg" style="display:none;"></p>
@@ -286,7 +288,8 @@
             <p id="removerSemanaTexto" class="modal-descricao"></p>
             <p id="removerSemanaAviso" class="desfazer-aviso"></p>
             <div class="modal-botoes">
-                <button type="button" id="cancelarRemoverSemana" class="btn-secundario" onclick="fecharRemoverSemanaBox()">Cancelar</button>
+                <button type="button" id="cancelarRemoverSemana" class="btn-secundario"
+                    onclick="fecharRemoverSemanaBox()">Cancelar</button>
                 <button type="button" id="confirmarRemoverSemana" class="btn-perigo">Remover e Reajustar</button>
             </div>
             <p id="removerSemanaMsg" style="display:none;"></p>
@@ -310,7 +313,8 @@
                 <span>Usar os livros preparados em "Próxima Semana"</span>
             </label>
             <div class="modal-botoes">
-                <button type="button" id="cancelarFinalizar" class="btn-secundario" onclick="fecharFinalizarBox()">Cancelar</button>
+                <button type="button" id="cancelarFinalizar" class="btn-secundario"
+                    onclick="fecharFinalizarBox()">Cancelar</button>
                 <button type="button" id="confirmarFinalizar" class="btn-perigo">Confirmar</button>
             </div>
             <p id="finalizarMsg" style="display:none;"></p>
@@ -333,7 +337,8 @@
                 <span class="radio-grupo-titulo" id="modoAnoTitulo">O que fazer com a semana atual?</span>
                 <label class="radio-linha" for="modoAnoArquivar">
                     <input type="radio" name="modoFinalizarAno" id="modoAnoArquivar" value="arquivar" checked>
-                    <span id="modoAnoArquivarLabel">Arquivar a semana atual na pasta do ano e criar a Semana 1 em branco</span>
+                    <span id="modoAnoArquivarLabel">Arquivar a semana atual na pasta do ano e criar a Semana 1 em
+                        branco</span>
                 </label>
                 <label class="radio-linha" for="modoAnoManter">
                     <input type="radio" name="modoFinalizarAno" id="modoAnoManter" value="manter">
@@ -344,7 +349,8 @@
             <p id="finalizarAnoResumo" class="modal-aviso"></p>
 
             <div class="modal-botoes">
-                <button type="button" id="cancelarFinalizarAno" class="btn-secundario" onclick="fecharFinalizarAnoBox()">Cancelar</button>
+                <button type="button" id="cancelarFinalizarAno" class="btn-secundario"
+                    onclick="fecharFinalizarAnoBox()">Cancelar</button>
                 <button type="button" id="confirmarFinalizarAno" class="btn-primario">Arquivar Ano</button>
             </div>
             <p id="finalizarAnoMsg" style="display:none;"></p>
@@ -360,10 +366,12 @@
                 Isso vai restaurar a semana anterior e apagar o avanço.
             </p>
             <p class="desfazer-aviso">
-                Os livros da semana anterior serão restaurados. Esta ação é irreversível e só deve ser usada se a semana atual foi finalizada por engano.
+                Os livros da semana anterior serão restaurados. Esta ação é irreversível e só deve ser usada se a semana
+                atual foi finalizada por engano.
             </p>
             <div class="modal-botoes">
-                <button type="button" id="cancelarDesfazer" class="btn-secundario" onclick="fecharDesfazerBox()">Cancelar</button>
+                <button type="button" id="cancelarDesfazer" class="btn-secundario"
+                    onclick="fecharDesfazerBox()">Cancelar</button>
                 <button type="button" id="confirmarDesfazer" class="btn-perigo">Desfazer</button>
             </div>
             <p id="desfazerMsg" style="display:none;"></p>
@@ -382,7 +390,8 @@
             <label for="selectAnoDesfazer">Pasta do ano:</label>
             <select id="selectAnoDesfazer"></select>
 
-            <label class="checkbox-linha" id="restaurarSemanaAnoWrapper" for="restaurarSemanaAnoCheck" style="display:none;">
+            <label class="checkbox-linha" id="restaurarSemanaAnoWrapper" for="restaurarSemanaAnoCheck"
+                style="display:none;">
                 <input type="checkbox" id="restaurarSemanaAnoCheck" checked>
                 <span id="restaurarSemanaAnoLabel">Restaurar número da semana atual</span>
             </label>
@@ -390,7 +399,8 @@
             <p id="desfazerAnoResumo" class="desfazer-aviso"></p>
 
             <div class="modal-botoes">
-                <button type="button" id="cancelarDesfazerAno" class="btn-secundario" onclick="fecharDesfazerAnoBox()">Cancelar</button>
+                <button type="button" id="cancelarDesfazerAno" class="btn-secundario"
+                    onclick="fecharDesfazerAnoBox()">Cancelar</button>
                 <button type="button" id="confirmarDesfazerAno" class="btn-perigo">Desfazer Ano</button>
             </div>
             <p id="desfazerAnoMsg" style="display:none;"></p>
@@ -400,10 +410,12 @@
     <!-- Modal de Restauração de Semanas Removidas -->
     <div id="restaurarSemanaOverlay" class="modal" onclick="fecharRestaurarSemanaFora(event)">
         <div id="restaurarSemanaBox" class="modal-box modal-box-largo">
-            <button type="button" class="fechar" aria-label="Fechar" onclick="fecharRestaurarSemanaBox()">&times;</button>
+            <button type="button" class="fechar" aria-label="Fechar"
+                onclick="fecharRestaurarSemanaBox()">&times;</button>
             <h3>Restaurar Semana Removida</h3>
             <p class="modal-descricao">
-                Ao restaurar uma semana, ela volta para sua posição original e as semanas seguintes são reajustadas para cima.
+                Ao restaurar uma semana, ela volta para sua posição original e as semanas seguintes são reajustadas para
+                cima.
             </p>
             <div id="listaLixeiraSemanas" class="lixeira-lista"></div>
             <p id="restaurarSemanaMsg" style="display:none;"></p>
@@ -414,8 +426,10 @@
         <p>&copy; Todos os direitos reservados. | MIT | Heartz Company.</p>
     </footer>
 
-<div id="areaPrint">
-    <div id="printContent"></div>
-</div>
+    <div id="areaPrint">
+        <div id="printContent"></div>
+    </div>
+    <script src="js/functions.js"></script>
+    <script type="module" src="script.js"></script>
 
 </html>
