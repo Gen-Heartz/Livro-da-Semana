@@ -12,25 +12,25 @@
 
 <body>
     <header id="menu">
-        <h1>Outros</h1>
+        <div class="header-topo">
+            <h1>Outros</h1>
+        </div>
 
-        <nav>
-            <button>
-                <a href="../index.html" class="nav-link">Livros da Semana</a>
-            </button>
-        </nav>
+        <div class="header-nav">
+            <nav>
+                <a href="../index.html" class="nav-btn nav-link">Livros da Semana</a>
+            </nav>
 
-        <nav>
-            <button id="loginBtn" onclick="toggleLoginBox()">
-                Login Admin
-            </button>
-        </nav>
+            <nav id="loginNav">
+                <button type="button" id="loginBtn" class="nav-btn" onclick="toggleLoginBox()">
+                    Login Admin
+                </button>
+            </nav>
 
-        <nav>
-            <div id="adminPanel" style="display:none;">
-                <button id="logoutBtn">Sair</button>
-            </div>
-        </nav>
+            <nav id="adminPanel" style="display:none;">
+                <button type="button" id="logoutBtn" class="nav-btn">Sair</button>
+            </nav>
+        </div>
     </header>
 
     <main>
@@ -40,7 +40,7 @@
                 <h2>Infantil</h2>
             </div>
             <div class="books-container" id="booksInfantil">
-                <p style="text-align:center; color:#888;">Carregando...</p>
+                <p class="estado-vazio">Carregando...</p>
             </div>
         </section>
 
@@ -50,7 +50,7 @@
                 <h2>Jovem Adulto</h2>
             </div>
             <div class="books-container" id="booksFantastico">
-                <p style="text-align:center; color:#888;">Carregando...</p>
+                <p class="estado-vazio">Carregando...</p>
             </div>
         </section>
 
@@ -60,7 +60,7 @@
                 <h2>Romance</h2>
             </div>
             <div class="books-container" id="booksRomance">
-                <p style="text-align:center; color:#888;">Carregando...</p>
+                <p class="estado-vazio">Carregando...</p>
             </div>
         </section>
 
@@ -70,7 +70,7 @@
                 <h2>Policial e Thriller</h2>
             </div>
             <div class="books-container" id="booksNaoFiccao">
-                <p style="text-align:center; color:#888;">Carregando...</p>
+                <p class="estado-vazio">Carregando...</p>
             </div>
         </section>
 
@@ -80,7 +80,7 @@
                 <h2>Não Ficção</h2>
             </div>
             <div class="books-container" id="booksJovemAdulto">
-                <p style="text-align:center; color:#888;">Carregando...</p>
+                <p class="estado-vazio">Carregando...</p>
             </div>
         </section>
     </main>
@@ -88,20 +88,20 @@
     <!-- Modal para exibir sinopse -->
     <div id="meuModal" class="modal" onclick="fecharModalFora(event)">
         <div class="modal-corpo">
-            <span class="fechar" onclick="fecharModal()">&times;</span>
+            <button type="button" class="fechar" aria-label="Fechar" onclick="fecharModal()">&times;</button>
             <div id="textoDoModal"></div>
         </div>
     </div>
 
     <!-- Modal de Login -->
     <div id="loginOverlay" class="modal" onclick="fecharLoginFora(event)">
-        <div id="loginBox">
-            <span class="fechar" onclick="fecharLoginBox()">&times;</span>
+        <div id="loginBox" class="modal-box">
+            <button type="button" class="fechar" aria-label="Fechar" onclick="fecharLoginBox()">&times;</button>
             <h3>Login Administrador</h3>
             <input type="email" id="email" placeholder="Email" autocomplete="email">
             <input type="password" id="senha" placeholder="Senha" autocomplete="current-password">
-            <button id="entrar">Entrar</button>
-            <p id="loginErro" style="color: red; display: none;">Email ou senha incorretos.</p>
+            <button type="button" id="entrar" class="btn-primario">Entrar</button>
+            <p id="loginErro" class="msg-erro" style="display: none;">Email ou senha incorretos.</p>
         </div>
     </div>
 
@@ -146,7 +146,7 @@
                         </div>
                         <div class="nota-item">
                             <code>&lt;hr&gt;</code>
-                            <span class="nota-resultado">Linha ───</span>
+                            <span class="nota-resultado">Linha separadora</span>
                         </div>
                     </div>
                     <div class="nota-secao">
@@ -162,7 +162,7 @@
 
             <!-- Painel de Edição -->
             <div id="editBox">
-                <span class="fechar" onclick="fecharEditBox()">&times;</span>
+                <button type="button" class="fechar" aria-label="Fechar" onclick="fecharEditBox()">&times;</button>
                 <h3>Editar Livro</h3>
 
                 <label for="editGenero">Género:</label>
@@ -189,9 +189,9 @@
                 <label for="editSinopse">Sinopse:</label>
                 <textarea id="editSinopse" rows="8" placeholder="Escreva a sinopse aqui."></textarea>
 
-                <p class="edit-dica">* Separe parágrafos com uma linha em branco. *</p>
+                <p class="edit-dica">Separe parágrafos com uma linha em branco.</p>
 
-                <button id="salvarEdicao">Salvar Alterações</button>
+                <button type="button" id="salvarEdicao" class="btn-primario">Salvar Alterações</button>
                 <p id="editMsg" style="display: none;"></p>
             </div>
 
@@ -202,12 +202,12 @@
         <p>&copy; Todos os direitos reservados. | MIT | Heartz Company.</p>
     </footer>
 
+    <div id="areaPrint">
+        <div id="printContent"></div>
+    </div>
+
     <script src="../js/functions.js"></script>
     <script type="module" src="../js/outros.js"></script>
 </body>
-
-<div id="areaPrint">
-    <div id="printContent"></div>
-</div>
 
 </html>

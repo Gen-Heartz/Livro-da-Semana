@@ -1,75 +1,158 @@
-/*      GERAL      */
+/* ======================== */
+/*           GERAL          */
+/* ======================== */
+
+:root {
+    --cor-papel: #faebd7;
+    --cor-papel-claro: #fdf6ec;
+    --cor-papel-escuro: #efe0cb;
+    --cor-areia: #c7baaa;
+    --cor-areia-hover: #b6a794;
+    --cor-marrom-claro: #8b7355;
+    --cor-marrom: #5a4630;
+    --cor-marrom-escuro: #3d2f1e;
+    --cor-texto: #2b231b;
+    --cor-perigo: #8b3a3a;
+    --cor-perigo-hover: #6b2a2a;
+    --cor-sucesso: #2f6b3c;
+    --cor-borda: rgba(90, 70, 48, 0.18);
+}
 
 * {
     box-sizing: border-box;
 }
 
 body {
-    background-image: linear-gradient(#faebd7, black 120%);
+    background-image: linear-gradient(180deg, #faebd7 0%, #dccbb3 38%, #1d1915 100%);
     background-attachment: fixed;
     margin: 0 auto;
-    max-width: 1200px;
-    padding: 0px 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 1160px;
+    padding: 18px 20px 24px;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+    color: var(--cor-texto);
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-/*         HEADER           */
-
-header {
-    text-align: center;
-}
+/* ======================== */
+/*          HEADER          */
+/* ======================== */
 
 #menu {
-    margin: 0;
-    background-color: #faebd7;
+    background-color: var(--cor-papel);
+    border: 1px solid var(--cor-borda);
     border-radius: 10px;
-    padding: 0px 0px 0px 0px;
+    text-align: center;
+    box-shadow: 0 6px 24px rgba(24, 18, 12, 0.08);
+    overflow: visible;
 }
 
-/*       NAVEGAÇÃO          */
+.header-topo {
+    padding: 20px 24px 14px;
+}
+
+#menu h1 {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--cor-marrom-escuro);
+}
+
+.header-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 4px;
+    padding: 0 12px;
+}
+
+/* ======================== */
+/*        NAVEGAÇÃO         */
+/* ======================== */
 
 nav {
-    background-color: #c7baaa;
-    border-radius: 7px 7px 0px 0px;
+    background-color: var(--cor-areia);
+    border-radius: 7px 7px 0 0;
     position: relative;
-    display: inline-block;
-    color: rgb(0, 0, 0);
-    padding: 0px;
-    cursor: pointer;
-    margin-right: 0px;
+    display: inline-flex;
+    align-items: center;
     vertical-align: bottom;
-    margin-bottom: 0;
+    transition: background-color 0.2s ease;
 }
 
 nav:hover {
-    background-color: #b8a996;
-    transition-duration: 0.3s;
+    background-color: var(--cor-areia-hover);
 }
 
-/* ===== DROPDOWN ===== */
+.nav-btn {
+    background-color: transparent;
+    color: var(--cor-texto);
+    border: none;
+    cursor: pointer;
+    padding: 8px 14px;
+    border-radius: 7px 7px 0 0;
+    font-size: 13.5px;
+    font-weight: 500;
+    font-family: inherit;
+    line-height: 1.2;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-btn:hover {
+    background-color: transparent;
+}
+
+.nav-btn-accent {
+    background-color: var(--cor-marrom);
+    color: var(--cor-papel);
+}
+
+.nav-btn-accent:hover {
+    background-color: var(--cor-marrom-escuro);
+}
+
+.nav-btn-danger {
+    background-color: var(--cor-perigo);
+    color: var(--cor-papel);
+}
+
+.nav-btn-danger:hover {
+    background-color: var(--cor-perigo-hover);
+}
+
+/* ======================== */
+/*   DROPDOWN DE SEMANAS    */
+/* ======================== */
 
 .dropdown {
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
-    background: #c7baaa;
-    color: black;
+    background: #d3c6b5;
+    border: 1px solid rgba(90, 70, 48, 0.22);
+    border-top: none;
+    color: var(--cor-texto);
     padding: 6px;
-    min-width: 160px;
-    max-height: 250px;
+    min-width: 220px;
+    max-height: 340px;
     overflow-y: auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 0px 0px 7px 7px;
-    z-index: 10;
+    box-shadow: 0 10px 24px rgba(20, 15, 10, 0.2);
+    border-radius: 0 6px 8px 8px;
+    z-index: 50;
+    text-align: left;
 }
 
-nav:hover .dropdown {
+.nav-dropdown-wrapper:hover .dropdown,
+.nav-dropdown-wrapper.dropdown-aberto .dropdown {
     display: block;
 }
 
-/* Scrollbar do dropdown */
 .dropdown::-webkit-scrollbar {
     width: 6px;
 }
@@ -79,67 +162,130 @@ nav:hover .dropdown {
 }
 
 .dropdown::-webkit-scrollbar-thumb {
-    background: #8b7355;
+    background: var(--cor-marrom-claro);
     border-radius: 3px;
 }
 
 .dropdown::-webkit-scrollbar-thumb:hover {
-    background: #6b5535;
+    background: var(--cor-marrom);
 }
 
-.dropdown>a {
-    color: black;
+.dropdown a {
+    color: var(--cor-texto);
     text-decoration: none;
     display: block;
-    padding: 6px 10px;
-    border-radius: 4px;
+    padding: 7px 10px;
+    border-radius: 5px;
     font-size: 13px;
-    transition: background-color 0.2s, color 0.2s;
+    transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-.dropdown>a:hover {
-    background-color: #b8a996;
-    color: #faebd7;
-    font-weight: bold;
+.dropdown a:hover {
+    background-color: var(--cor-areia-hover);
+    color: var(--cor-marrom-escuro);
 }
 
-.dropdown>a.semana-ativa {
-    background-color: #5a4630;
-    color: #faebd7;
-    font-weight: bold;
+.dropdown a.semana-ativa {
+    background-color: var(--cor-marrom);
+    color: var(--cor-papel);
+    font-weight: 600;
     pointer-events: none;
 }
 
-.dropdown-carregando {
-    padding: 8px 10px;
-    color: #8b7355;
-    font-size: 12px;
-    font-style: italic;
-    margin: 0;
+.dropdown-separador {
+    border-top: 1px solid rgba(90, 70, 48, 0.2);
+    margin: 6px 2px;
 }
 
+.dropdown-carregando,
 .dropdown-vazio {
     padding: 8px 10px;
-    color: #8b7355;
+    color: var(--cor-marrom);
     font-size: 12px;
     font-style: italic;
     margin: 0;
 }
 
-/*         BOTÕES           */
+/* Pastas de Anos no Dropdown */
+.dropdown-pasta {
+    margin-bottom: 4px;
+    border-radius: 5px;
+    background-color: rgba(250, 235, 215, 0.35);
+    border: 1px solid rgba(90, 70, 48, 0.12);
+    overflow: hidden;
+}
+
+.dropdown-pasta:last-child {
+    margin-bottom: 0;
+}
+
+.pasta-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 8px 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--cor-marrom-escuro);
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.15s ease;
+}
+
+.pasta-toggle:hover {
+    background-color: rgba(182, 167, 148, 0.45);
+}
+
+.dropdown-pasta.aberta .pasta-toggle {
+    background-color: rgba(90, 70, 48, 0.12);
+    border-bottom: 1px solid rgba(90, 70, 48, 0.14);
+}
+
+.pasta-meta {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--cor-marrom-claro);
+}
+
+.pasta-conteudo {
+    display: none;
+    padding: 4px 4px 4px 10px;
+    border-left: 2px solid var(--cor-marrom-claro);
+    margin: 4px 4px 4px 8px;
+}
+
+.dropdown-pasta.aberta .pasta-conteudo {
+    display: block;
+}
+
+.pasta-conteudo a {
+    font-size: 12.5px;
+    padding: 6px 8px;
+}
+
+/* ======================== */
+/*      BOTÕES GERAIS       */
+/* ======================== */
 
 button {
-    background-color: #c7baaa;
+    background-color: var(--cor-areia);
+    color: var(--cor-texto);
     border: none;
     cursor: pointer;
-    transition: background-color 0.3s;
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 14px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    padding: 7px 14px;
+    border-radius: 5px;
+    font-size: 13.5px;
+    font-family: inherit;
 }
 
 button:hover {
-    background-color: #b8a996;
+    background-color: var(--cor-areia-hover);
 }
 
 button:disabled {
@@ -147,196 +293,311 @@ button:disabled {
     cursor: not-allowed;
 }
 
-/* Botão Voltar para Atual */
-#voltarAtual {
-    margin-bottom: 15px;
-    background-color: #5a4630;
-    color: #faebd7;
-    padding: 8px 16px;
-    border-radius: 5px;
-    font-size: 13px;
-    border: none;
+.btn-primario {
+    background-color: var(--cor-marrom);
+    color: var(--cor-papel);
+    font-weight: 500;
 }
 
-#voltarAtual:hover {
-    background-color: #3d2f1e;
+.btn-primario:hover {
+    background-color: var(--cor-marrom-escuro);
 }
 
-/* Botão Finalizar Semana */
-#finalizarBtn {
-    background-color: #5a4630;
-    color: #faebd7;
-    padding: 4px 10px;
-    font-size: 14px;
+.btn-secundario {
+    background-color: var(--cor-areia);
+    color: var(--cor-texto);
+    font-weight: 500;
 }
 
-#finalizarBtn:hover {
-    background-color: #3d2f1e;
+.btn-secundario:hover {
+    background-color: var(--cor-areia-hover);
 }
 
-/* Botão Desfazer */
-#desfazerBtn {
-    background-color: #8b3a3a;
-    color: #faebd7;
-    padding: 4px 10px;
-    font-size: 14px;
+.btn-perigo {
+    background-color: var(--cor-perigo);
+    color: var(--cor-papel);
+    font-weight: 500;
 }
 
-#desfazerBtn:hover {
-    background-color: #6b2a2a;
+.btn-perigo:hover {
+    background-color: var(--cor-perigo-hover);
 }
 
-/* Modal Desfazer */
-#desfazerBox {
-    background-color: #faebd7;
-    padding: 30px;
+/* ======================== */
+/*           MAIN           */
+/* ======================== */
+
+main {
+    background-color: var(--cor-papel);
+    border: 1px solid var(--cor-borda);
     border-radius: 10px;
-    width: 90%;
-    max-width: 420px;
-    position: relative;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    text-align: center;
+    padding: 26px 28px 30px;
+    margin: 16px 0;
+    box-shadow: 0 8px 28px rgba(20, 15, 10, 0.1);
+    flex: 1;
 }
 
-#desfazerBox h3 {
-    margin-top: 5px;
-    margin-bottom: 15px;
-    color: #8b3a3a;
+.semana-cabecalho {
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--cor-borda);
 }
 
-#desfazerBox p {
+.semana-titulo-linha {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+main h2 {
+    margin: 0;
+    font-size: 1.45rem;
+    font-weight: 600;
+    color: var(--cor-marrom-escuro);
+    letter-spacing: -0.01em;
+}
+
+#subtituloSemana {
+    margin: 6px 0 0;
     font-size: 14px;
-    color: #333;
-    line-height: 1.5;
-    margin-bottom: 10px;
+    color: var(--cor-marrom-claro);
 }
 
-.desfazer-aviso {
+.btn-editar-semana {
+    background-color: var(--cor-papel-escuro);
+    color: var(--cor-marrom);
+    border: 1px solid var(--cor-borda);
+    padding: 4px 10px;
     font-size: 12px;
-    color: #8b3a3a;
-    font-style: italic;
-    font-weight: bold;
+    font-weight: 500;
+    border-radius: 4px;
+}
+
+.btn-editar-semana:hover {
+    background-color: var(--cor-areia);
+    color: var(--cor-marrom-escuro);
+}
+
+.btn-remover-semana {
+    background-color: rgba(139, 58, 58, 0.1);
+    color: var(--cor-perigo);
+    border: 1px solid rgba(139, 58, 58, 0.3);
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 4px;
+}
+
+.btn-remover-semana:hover {
+    background-color: var(--cor-perigo);
+    color: var(--cor-papel);
+    border-color: var(--cor-perigo);
+}
+
+.proxima-resumo-admin {
+    margin: 8px 0 0;
+    font-size: 12.5px;
+    color: var(--cor-marrom);
+    font-weight: 500;
+}
+
+.proxima-painel {
+    background-color: var(--cor-papel-claro);
+    border: 1px solid var(--cor-borda);
+    border-radius: 8px;
+    padding: 16px 18px;
     margin-bottom: 20px;
 }
 
-.desfazer-botoes {
+.proxima-painel-info h3 {
+    margin: 0 0 4px;
+    font-size: 15px;
+    color: var(--cor-marrom-escuro);
+}
+
+.proxima-painel-info p {
+    margin: 0 0 14px;
+    font-size: 13px;
+    color: var(--cor-marrom-claro);
+    line-height: 1.45;
+}
+
+.proxima-painel-controles {
     display: flex;
-    gap: 10px;
-    justify-content: center;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
 }
 
-.desfazer-botoes button {
-    padding: 10px 24px;
-    font-size: 14px;
+.proxima-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.proxima-campo label {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--cor-marrom);
+}
+
+.proxima-campo input[type="datetime-local"] {
+    padding: 8px 10px;
+    background-color: var(--cor-papel);
+    border: 1px solid var(--cor-areia);
     border-radius: 5px;
-    border: none;
-    cursor: pointer;
+    font-size: 13.5px;
+    font-family: inherit;
+    color: var(--cor-texto);
+    outline: none;
 }
 
-#confirmarDesfazer {
-    background-color: #8b3a3a;
-    color: #faebd7;
+.proxima-campo input[type="datetime-local"]:focus {
+    border-color: var(--cor-marrom);
 }
 
-#confirmarDesfazer:hover {
-    background-color: #6b2a2a;
+.proxima-acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
-#desfazerMsg {
+#proximaMsg {
     margin-top: 12px;
     font-size: 13px;
 }
 
-#desfazerMsg.sucesso {
-    color: green;
+#voltarAtual {
+    margin-bottom: 18px;
+    background-color: var(--cor-marrom);
+    color: var(--cor-papel);
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 500;
 }
 
-#desfazerMsg.erro {
-    color: red;
+#voltarAtual:hover {
+    background-color: var(--cor-marrom-escuro);
 }
 
-/*          MAIN            */
-
-main {
-    background-color: #faebd7;
-    border-radius: 10px;
-    padding: 20px;
-    margin: 15px 0px;
-}
-
-main h2 {
-    margin-top: 0;
-}
-
-/* Indicador de histórico */
 .historico-badge {
     display: inline-block;
-    background-color: #8b7355;
-    color: #faebd7;
+    background-color: var(--cor-marrom-claro);
+    color: var(--cor-papel);
     font-size: 11px;
-    padding: 2px 8px;
-    border-radius: 10px;
+    padding: 3px 9px;
+    border-radius: 4px;
     margin-left: 8px;
     vertical-align: middle;
-    font-weight: normal;
+    font-weight: 500;
+    letter-spacing: 0.02em;
 }
 
-/*     GRID DE LIVROS       */
+.estado-vazio {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--cor-marrom-claro);
+    font-size: 14px;
+    padding: 24px 0;
+    margin: 0;
+}
+
+/* ======================== */
+/*      GRID DE LIVROS      */
+/* ======================== */
 
 .books-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
     gap: 20px;
 }
 
 .book {
-    text-align: center;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--cor-papel-claro);
+    border: 1px solid rgba(90, 70, 48, 0.14);
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.book:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(40, 30, 20, 0.12);
+    border-color: rgba(90, 70, 48, 0.28);
+}
+
+.book-capa-wrapper {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+    border-radius: 5px;
+    background-color: var(--cor-papel-escuro);
 }
 
 .book img {
     width: 100%;
-    height: auto;
-    border-radius: 8px;
+    height: 100%;
+    object-fit: cover;
     display: block;
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.25s ease;
 }
 
-.book img:hover {
-    transform: scale(1.03);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+.book:hover img {
+    transform: scale(1.02);
+}
+
+.book-sem-capa {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cor-marrom-claro);
+    font-size: 12.5px;
+    cursor: pointer;
+    background-color: var(--cor-papel-escuro);
 }
 
 .book h5 {
-    margin: 8px 0 0 0;
-    font-size: 14px;
+    margin: 10px 2px 2px;
+    font-size: 13.5px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--cor-marrom-escuro);
 }
 
-/* Botão editar sobre cada livro (só admin) */
 .btn-editar-livro {
     position: absolute;
-    top: 5px;
-    right: 5px;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    font-size: 14px;
+    top: 16px;
+    right: 16px;
+    background-color: rgba(43, 35, 27, 0.85);
+    color: var(--cor-papel);
+    border: 1px solid rgba(250, 235, 215, 0.25);
+    border-radius: 4px;
+    padding: 4px 9px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
     cursor: pointer;
     display: none;
     z-index: 5;
-    line-height: 30px;
-    padding: 0;
 }
 
 .btn-editar-livro:hover {
-    background-color: rgba(0, 0, 0, 0.85);
+    background-color: var(--cor-marrom-escuro);
 }
 
-/*     MODAL (Sinopse)      */
+/* ======================== */
+/*     MODAIS EM GERAL      */
+/* ======================== */
 
 .modal {
     display: none;
@@ -346,152 +607,276 @@ main h2 {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(20, 16, 12, 0.65);
+    backdrop-filter: blur(2px);
     justify-content: center;
     align-items: center;
+    padding: 16px;
 }
 
 .modal-corpo {
-    background-image: linear-gradient(#faebd7, #d4c5b0);
-    padding: 30px;
-    border-radius: 8px;
+    background-color: var(--cor-papel);
+    border: 1px solid var(--cor-borda);
+    padding: 32px;
+    border-radius: 10px;
     max-width: 600px;
-    width: 85%;
+    width: 100%;
     position: relative;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    font-family: sans-serif;
-    line-height: 1.6;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+    line-height: 1.65;
     max-height: 85vh;
     overflow-y: auto;
+    color: var(--cor-texto);
+}
+
+.modal-corpo h3 {
+    margin-top: 0;
+    margin-bottom: 14px;
+    padding-right: 28px;
+    color: var(--cor-marrom-escuro);
+    border-bottom: 1px solid var(--cor-borda);
+    padding-bottom: 10px;
+}
+
+.modal-box {
+    background-color: var(--cor-papel);
+    border: 1px solid var(--cor-borda);
+    padding: 28px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 410px;
+    position: relative;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+    text-align: center;
+}
+
+.modal-box h3 {
+    margin: 4px 0 14px;
+    color: var(--cor-marrom-escuro);
+    font-size: 1.2rem;
+}
+
+.modal-box h3.titulo-perigo {
+    color: var(--cor-perigo);
+}
+
+.modal-box label {
+    display: block;
+    text-align: left;
+    margin: 12px 0 5px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--cor-marrom);
+}
+
+.modal-box input[type="email"],
+.modal-box input[type="password"],
+.modal-box input[type="text"],
+.modal-box input[type="number"],
+.modal-box select {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+    background-color: var(--cor-papel-claro);
+    border: 1px solid var(--cor-areia);
+    border-radius: 6px;
+    font-size: 14px;
+    color: var(--cor-texto);
+    outline: none;
+    transition: border-color 0.2s ease;
+    font-family: inherit;
+}
+
+.modal-box input:focus,
+.modal-box select:focus {
+    border-color: var(--cor-marrom);
+}
+
+.modal-descricao {
+    font-size: 14px;
+    color: var(--cor-texto);
+    line-height: 1.5;
+    margin: 0 0 12px;
+}
+
+.modal-aviso {
+    font-size: 12.5px;
+    color: var(--cor-marrom-claro);
+    margin: 8px 0 18px;
+    line-height: 1.5;
+}
+
+.checkbox-linha {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    text-align: left;
+    font-weight: 500 !important;
+    margin: 4px 0 12px !important;
+    cursor: pointer;
+    color: var(--cor-texto) !important;
+}
+
+.checkbox-linha input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+    accent-color: var(--cor-marrom);
+    cursor: pointer;
+}
+
+.radio-grupo {
+    text-align: left;
+    margin: 6px 0 12px;
+    padding: 10px 12px;
+    background-color: var(--cor-papel-claro);
+    border: 1px solid var(--cor-borda);
+    border-radius: 6px;
+}
+
+.radio-grupo-titulo {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--cor-marrom);
+    margin-bottom: 8px;
+}
+
+.radio-linha {
+    display: flex !important;
+    align-items: flex-start;
+    gap: 8px;
+    font-weight: 500 !important;
+    font-size: 13px !important;
+    line-height: 1.4;
+    margin: 6px 0 !important;
+    cursor: pointer;
+    color: var(--cor-texto) !important;
+}
+
+.radio-linha input[type="radio"] {
+    width: auto;
+    margin: 3px 0 0;
+    accent-color: var(--cor-marrom);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.modal-botoes {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.modal-botoes button {
+    flex: 1;
+    padding: 10px 18px;
+    font-size: 14px;
+    border-radius: 6px;
 }
 
 .fechar {
     position: absolute;
     top: 10px;
-    right: 15px;
-    color: #8e8579;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
+    right: 12px;
+    background: transparent;
+    color: var(--cor-marrom-claro);
+    font-size: 24px;
+    font-weight: 400;
     line-height: 1;
+    padding: 4px 8px;
+    border-radius: 4px;
 }
 
 .fechar:hover {
-    color: #333;
+    background-color: rgba(90, 70, 48, 0.1);
+    color: var(--cor-marrom-escuro);
 }
 
+.msg-erro,
+.erro {
+    color: var(--cor-perigo);
+    font-size: 13px;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.sucesso {
+    color: var(--cor-sucesso);
+    font-size: 13px;
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-weight: 500;
+}
+
+/* ======================== */
 /*     MODAL DE LOGIN       */
+/* ======================== */
 
 #loginOverlay {
     z-index: 1100;
 }
 
 #loginBox {
-    background-color: #faebd7;
-    padding: 30px;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 350px;
-    position: relative;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    text-align: center;
+    max-width: 360px;
 }
 
-#loginBox h3 {
-    margin-top: 5px;
-    margin-bottom: 20px;
-    color: #5a4630;
-}
-
-#loginBox input {
-    width: 100%;
-    padding: 10px 12px;
-    margin-bottom: 12px;
-    border: 1px solid #c7baaa;
-    border-radius: 5px;
-    font-size: 14px;
-    outline: none;
-    transition: border-color 0.3s;
-}
-
-#loginBox input:focus {
-    border-color: #8b7355;
-}
-
-#loginBox button {
+#loginBox #entrar {
     width: 100%;
     padding: 10px;
-    margin-top: 5px;
-    font-size: 16px;
+    margin-top: 4px;
+    font-size: 15px;
 }
 
-#loginErro {
-    margin-top: 10px;
-    font-size: 13px;
-}
-
-/*  ================================  */
-/*    MODAL DE EDIÇÃO + NOTAS         */
-/*  ================================  */
+/* ======================== */
+/*  MODAL DE EDIÇÃO + NOTAS */
+/* ======================== */
 
 #editOverlay {
     z-index: 1200;
-
-    /* Permite rolar se o conteúdo for grande */
     align-items: flex-start;
-    padding: 20px 0;
+    padding: 20px 16px;
     overflow-y: auto;
 }
 
-/* Container flex que agrupa Notas + EditBox */
 .edit-container {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     justify-content: center;
-    gap: 15px;
-
-    /* Largura máxima do conjunto */
-    width: 95%;
+    gap: 16px;
+    width: 100%;
     max-width: 820px;
-
-    /* Garante que não ultrapasse a tela */
     margin: auto;
 }
 
-/* ===== PAINEL DE EDIÇÃO ===== */
-
 #editBox {
-    background-color: #faebd7;
-    padding: 30px;
+    background-color: var(--cor-papel);
+    border: 1px solid var(--cor-borda);
+    padding: 28px;
     border-radius: 10px;
     position: relative;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
     overflow-y: auto;
-
-    /* Tamanho fixo — não estica mais */
     width: 480px;
     max-width: 100%;
     max-height: 85vh;
-
-    /* Remove flex: 1 que causava o problema */
     flex-shrink: 0;
 }
 
 #editBox h3 {
-    margin-top: 5px;
-    margin-bottom: 20px;
-    color: #5a4630;
+    margin: 4px 0 18px;
+    color: var(--cor-marrom-escuro);
     text-align: center;
 }
 
 #editBox label {
     display: block;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
     margin-top: 12px;
-    font-weight: bold;
+    font-weight: 600;
     font-size: 13px;
-    color: #5a4630;
+    color: var(--cor-marrom);
 }
 
 #editBox select,
@@ -499,18 +884,20 @@ main h2 {
 #editBox textarea {
     width: 100%;
     padding: 10px 12px;
-    border: 1px solid #c7baaa;
-    border-radius: 5px;
+    background-color: var(--cor-papel-claro);
+    border: 1px solid var(--cor-areia);
+    border-radius: 6px;
     font-size: 14px;
+    color: var(--cor-texto);
     outline: none;
-    transition: border-color 0.3s;
+    transition: border-color 0.2s ease;
     font-family: inherit;
 }
 
 #editBox select:focus,
 #editBox input[type="text"]:focus,
 #editBox textarea:focus {
-    border-color: #8b7355;
+    border-color: var(--cor-marrom);
 }
 
 #editBox textarea {
@@ -520,77 +907,47 @@ main h2 {
 
 .edit-dica {
     font-size: 12px;
-    color: #8b7355;
-    margin: 5px 0 15px 0;
+    color: var(--cor-marrom-claro);
+    margin: 6px 0 14px;
 }
 
 #salvarEdicao {
     width: 100%;
-    padding: 12px;
-    margin-top: 10px;
-    font-size: 16px;
-    background-color: #5a4630;
-    color: #faebd7;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#salvarEdicao:hover {
-    background-color: #3d2f1e;
+    padding: 11px;
+    margin-top: 6px;
+    font-size: 15px;
 }
 
 #editMsg {
     text-align: center;
     margin-top: 10px;
-    font-size: 14px;
+    font-size: 13.5px;
 }
 
-#editMsg.sucesso {
-    color: green;
-}
-
-#editMsg.erro {
-    color: red;
-}
-
-/* ===== PAINEL DE NOTAS ===== */
-
+/* Painel de Notas */
 #notasFloat {
-    /* Tamanho fixo */
-    width: 250px;
+    width: 260px;
     flex-shrink: 0;
     max-height: 85vh;
-
-    background-color: #f0e4d0;
-    border: 2px solid #c7baaa;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-
-    /* Layout interno */
+    background-color: #f2e6d3;
+    border: 1px solid var(--cor-areia);
+    border-radius: 10px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
     flex-direction: column;
     overflow: hidden;
-
-    /* Posição normal no fluxo */
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-
-    /* display controlado pelo JS (none ou flex) */
 }
 
 #notasFloat .notas-header {
     padding: 12px 16px 10px;
-    border-bottom: 1px solid #c7baaa;
-    background-color: #e8dcc8;
+    border-bottom: 1px solid rgba(90, 70, 48, 0.18);
+    background-color: #e8dac4;
     flex-shrink: 0;
 }
 
 #notasFloat .notas-header h4 {
     margin: 0;
     font-size: 13px;
-    color: #5a4630;
+    color: var(--cor-marrom-escuro);
     white-space: nowrap;
 }
 
@@ -600,7 +957,6 @@ main h2 {
     flex: 1;
 }
 
-/* Scrollbar do painel de notas */
 #notasFloat .notas-corpo::-webkit-scrollbar {
     width: 5px;
 }
@@ -610,16 +966,14 @@ main h2 {
 }
 
 #notasFloat .notas-corpo::-webkit-scrollbar-thumb {
-    background: #c7baaa;
+    background: var(--cor-areia);
     border-radius: 3px;
 }
-
-/* ===== SEÇÕES DAS NOTAS ===== */
 
 .nota-secao {
     margin-bottom: 14px;
     padding-bottom: 12px;
-    border-bottom: 1px dashed #c7baaa;
+    border-bottom: 1px dashed rgba(90, 70, 48, 0.25);
 }
 
 .nota-secao:last-child {
@@ -630,10 +984,10 @@ main h2 {
 
 .nota-secao h5 {
     font-size: 11px;
-    color: #5a4630;
+    color: var(--cor-marrom);
     text-transform: uppercase;
-    letter-spacing: 1px;
-    margin: 0 0 6px 0;
+    letter-spacing: 0.08em;
+    margin: 0 0 6px;
 }
 
 .nota-item {
@@ -643,7 +997,7 @@ main h2 {
     gap: 6px;
     margin-bottom: 5px;
     padding: 4px 7px;
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.45);
     border-radius: 4px;
 }
 
@@ -656,7 +1010,7 @@ main h2 {
 .nota-item code {
     font-family: 'Courier New', monospace;
     font-size: 10px;
-    color: #5a4630;
+    color: var(--cor-marrom);
     background-color: rgba(199, 186, 170, 0.4);
     padding: 2px 4px;
     border-radius: 3px;
@@ -665,7 +1019,7 @@ main h2 {
 
 .nota-resultado {
     font-size: 12px;
-    color: #333;
+    color: var(--cor-texto);
     white-space: nowrap;
 }
 
@@ -673,7 +1027,7 @@ main h2 {
     margin: 0;
     padding-left: 16px;
     font-size: 11px;
-    color: #5a4630;
+    color: var(--cor-marrom);
     line-height: 1.7;
 }
 
@@ -684,24 +1038,53 @@ main h2 {
     border-radius: 2px;
 }
 
-/*  ================================  */
-/*    RESPONSIVO - EDIÇÃO + NOTAS     */
-/*  ================================  */
+/* Modais de Ação Admin */
+#editarSemanaOverlay,
+#removerSemanaOverlay,
+#finalizarOverlay,
+#finalizarAnoOverlay,
+#desfazerOverlay,
+#desfazerAnoOverlay {
+    z-index: 1300;
+}
 
-/* Tablet: empilha vertical */
+.desfazer-aviso {
+    font-size: 12.5px;
+    color: var(--cor-perigo);
+    margin: 8px 0 18px;
+    line-height: 1.5;
+}
+
+/* ======================== */
+/*          FOOTER          */
+/* ======================== */
+
+footer {
+    background-color: #191512;
+    color: var(--cor-papel);
+    border: 1px solid rgba(250, 235, 215, 0.1);
+    text-align: center;
+    padding: 15px 18px;
+    border-radius: 10px;
+    font-size: 12.5px;
+}
+
+footer p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+/* ======================== */
+/*      RESPONSIVIDADE      */
+/* ======================== */
+
 @media (max-width: 800px) {
-    #editOverlay {
-        padding: 15px 0;
-    }
-
     .edit-container {
         flex-direction: column;
         align-items: center;
-        width: 92%;
         max-width: 500px;
     }
 
-    /* Notas vai ABAIXO do editBox no tablet/mobile */
     #notasFloat {
         width: 100%;
         max-height: 220px;
@@ -716,15 +1099,49 @@ main h2 {
     }
 }
 
-/* Mobile */
 @media (max-width: 600px) {
-    .edit-container {
-        width: 96%;
-        gap: 10px;
+    body {
+        padding: 10px 12px 16px;
     }
 
-    #notasFloat {
-        max-height: 180px;
+    .header-topo {
+        padding: 16px 14px 12px;
+    }
+
+    #menu h1 {
+        font-size: 1.4rem;
+    }
+
+    .header-nav {
+        gap: 4px;
+        padding: 0 8px;
+    }
+
+    .nav-btn {
+        font-size: 12.5px;
+        padding: 7px 10px;
+    }
+
+    .dropdown {
+        max-height: 250px;
+        min-width: 195px;
+    }
+
+    main {
+        padding: 18px 16px 22px;
+    }
+
+    .books-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .book {
+        padding: 8px;
+    }
+
+    .modal-corpo {
+        padding: 22px;
     }
 
     #editBox {
@@ -732,156 +1149,20 @@ main h2 {
         max-height: 55vh;
     }
 
+    #notasFloat {
+        max-height: 180px;
+    }
+
     .nota-item {
         flex-direction: column;
         align-items: flex-start;
         gap: 2px;
     }
-}
 
-/*   MODAL FINALIZAR SEMANA   */
-
-#finalizarOverlay {
-    z-index: 1300;
-}
-
-#finalizarBox {
-    background-color: #faebd7;
-    padding: 30px;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 420px;
-    position: relative;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    text-align: center;
-}
-
-#finalizarBox h3 {
-    margin-top: 5px;
-    margin-bottom: 15px;
-    color: #5a4630;
-}
-
-#finalizarTexto {
-    font-size: 15px;
-    color: #333;
-    margin-bottom: 8px;
-}
-
-.finalizar-aviso {
-    font-size: 12px;
-    color: #8b7355;
-    font-style: italic;
-    margin-bottom: 20px;
-    line-height: 1.5;
-}
-
-.finalizar-botoes {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-}
-
-.finalizar-botoes button {
-    padding: 10px 24px;
-    font-size: 14px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-}
-
-#cancelarFinalizar {
-    background-color: #c7baaa;
-    color: #333;
-}
-
-#cancelarFinalizar:hover {
-    background-color: #b8a996;
-}
-
-#confirmarFinalizar {
-    background-color: #8b3a3a;
-    color: #faebd7;
-}
-
-#confirmarFinalizar:hover {
-    background-color: #6b2a2a;
-}
-
-#finalizarMsg {
-    margin-top: 12px;
-    font-size: 13px;
-}
-
-#finalizarMsg.sucesso {
-    color: green;
-}
-
-#finalizarMsg.erro {
-    color: red;
-}
-
-/*         FOOTER           */
-
-footer {
-    background-color: #1a1a1a;
-    color: #faebd7;
-    text-align: center;
-    padding: 15px;
-    border-radius: 10px;
-    font-size: 13px;
-}
-
-footer p {
-    margin: 0;
-}
-
-/*      RESPONSIVIDADE      */
-
-@media (max-width: 600px) {
-    #menu {
-        padding: 10px 5px 0 5px;
-    }
-
-    #menu h1 {
-        font-size: 1.4em;
-    }
-
-    nav {
-        font-size: 12px;
-        padding: 4px 7px;
-        margin-right: 5px;
-        margin-bottom: 0;
-        vertical-align: bottom;
-    }
-
-    .dropdown {
-        max-height: 200px;
-    }
-
-    .books-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
-
-    .modal-corpo {
-        width: 92%;
-        padding: 20px;
-    }
-
-    #editBox {
-        padding: 20px;
-    }
-
-    .finalizar-botoes {
+    .modal-botoes {
         flex-direction: column;
     }
-
-    .finalizar-botoes button {
-        width: 100%;
-    }
 }
-
 
 /* ======================== */
 /*    ÁREA DE IMPRESSÃO     */
@@ -891,24 +1172,118 @@ footer p {
     display: none;
 }
 
-/* ======================== */
-/*    ESTILOS DE IMPRESSÃO  */
-/* ======================== */
+#areaPrint.print-medindo {
+    display: block;
+    position: fixed;
+    left: -99999px;
+    top: 0;
+    visibility: hidden;
+    pointer-events: none;
+    background: #fff;
+    color: #000;
+}
+
+#printContent {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--print-gap, 10px);
+    align-items: stretch;
+}
+
+.print-livro {
+    border: 1px solid #ccc;
+    padding: var(--card-padding, 8px);
+    border-radius: 5px;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    overflow: hidden;
+    overflow-wrap: break-word;
+}
+
+.print-livro h3 {
+    margin: 0 0 var(--card-h3-margin, 8px) 0;
+    padding-bottom: 4px;
+    border-bottom: 2px solid #000000;
+    font-size: var(--card-h3-size, 20px);
+    line-height: 1.15;
+    color: #000000;
+}
+
+.print-livro h4 {
+    font-size: var(--card-h4-size, 16px);
+    line-height: 1.18;
+    margin: 4px 0;
+    color: #000000;
+}
+
+.print-livro p {
+    font-size: var(--card-p-size, 16px);
+    line-height: var(--card-line-height, 1.15);
+    margin: var(--card-p-margin, 3px) 0;
+}
+
+.print-livro strong {
+    font-weight: bold;
+}
+
+.print-livro em {
+    font-style: italic;
+}
+
+.print-livro u {
+    text-decoration: underline;
+}
+
+.print-livro s {
+    text-decoration: line-through;
+}
+
+.print-livro mark {
+    background-color: #e5d8c5;
+    padding: 0 2px;
+}
+
+.print-livro small {
+    font-size: 0.78em;
+}
+
+.print-livro big {
+    font-size: 1.15em;
+}
+
+.print-livro hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 4px 0;
+}
+
+.print-livro br {
+    display: block;
+    content: "";
+    margin: 2px 0;
+}
 
 @media print {
-
-    /* Força paisagem e tamanho A4 */
     @page {
         size: A4 landscape;
         margin: 5mm;
     }
 
-    /* Esconde tudo */
+    html,
+    body {
+        background: #fff;
+        padding: 0;
+        margin: 0;
+        max-width: none;
+        min-height: 0;
+        height: auto;
+        display: block;
+    }
+
     body * {
         visibility: hidden;
     }
 
-    /* Mostra apenas a área de impressão */
     #areaPrint,
     #areaPrint * {
         visibility: visible;
@@ -923,91 +1298,6 @@ footer p {
         padding: 0;
     }
 
-    #areaPrint h1 {
-        text-align: center;
-        margin: 0 0 10px 0;
-        font-size: 20px;
-        color: #333;
-    }
-
-    /* Grid 4 colunas */
-    #printContent {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        gap: 10px;
-    }
-
-    .print-livro {
-        border: 1px solid #ccc;
-        padding: 8px;
-        border-radius: 5px;
-        page-break-inside: avoid;
-        overflow: hidden;
-    }
-
-    .print-livro h3 {
-        margin: 0 0 10px 0;
-        padding-bottom: 4px;
-        border-bottom: 2px solid #000000;
-        font-size: 20px;
-        color: #000000;
-    }
-
-    .print-livro h4 {
-        font-size: 16px;
-        margin: 4px 0;
-        color: #000000;
-    }
-
-    .print-livro p {
-        font-size: 16px;
-        line-height: 1.15;
-        margin: 3px 0;
-    }
-
-    /* Formatação dentro da sinopse */
-    .print-livro strong {
-        font-weight: bold;
-    }
-
-    .print-livro em {
-        font-style: italic;
-    }
-
-    .print-livro u {
-        text-decoration: underline;
-    }
-
-    .print-livro s {
-        text-decoration: line-through;
-    }
-
-    .print-livro mark {
-        background-color: #000000;
-        padding: 0 2px;
-    }
-
-    .print-livro small {
-        font-size: 7px;
-    }
-
-    .print-livro big {
-        font-size: 10px;
-    }
-
-    .print-livro hr {
-        border: none;
-        border-top: 1px solid #ccc;
-        margin: 4px 0;
-    }
-
-    .print-livro br {
-        display: block;
-        content: "";
-        margin: 2px 0;
-    }
-
-    /* Esconde elementos desnecessários */
     header,
     footer,
     main,
